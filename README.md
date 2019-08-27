@@ -20,9 +20,8 @@ We first observed that all the headings are wrapped in `<b>` or `<strong>` tags 
 numbers.
 
 
-## Export
-Exported using
+Exported using:
 
 ``` fish
-jupyter nbconvert MozillaCodeSnippetExtraction.ipynb --to markdown; jupyter nbconvert MozillaCodeSnippetExtraction.ipynb --to html; jupyter nbconvert MozillaCodeSnippetExtraction.ipynb --to python
+jupyter nbconvert Extract_heading_names_school_of_life.ipynb --to markdown; jupyter nbconvert Extract_heading_names_school_of_life.ipynb --to html; jupyter nbconvert Extract_heading_names_school_of_life.ipynb --to python
 ```
