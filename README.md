@@ -1,5 +1,6 @@
 # BeautifulSoupNotebookTest
-An example notebook and output of Beautiful soup running in a juypter notebook to quickly and easily manipulate a web page and extract some data.
+Some example notebooks and output of Beautiful soup running in juypter notebooks to quickly and 
+easily manipulate web pages and extract data.
 
 
 ## 1. Mozilla
