@@ -13115,7 +13115,7 @@ div#notebook {
 
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Documentation: https://www.crummy.com/software/BeautifulSoup/bs4/doc/</span>
@@ -13176,7 +13176,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">soup</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">string</span><span class="p">)</span>
@@ -13207,7 +13207,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">begins_with_number</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
@@ -13215,63 +13215,33 @@ div#notebook {
     <span class="k">return</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="n">numbers</span>
 
 
-<span class="k">def</span> <span class="nf">parse_detailed_info_page</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
-    
-    <span class="c1">#     request the page</span>
-    <span class="n">detail_page</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">episode_detail_page_link</span><span class="p">)</span>
-    <span class="n">detail_soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">detail_page</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
-
-<span class="c1">#     description div has a quote and a description.</span>
-    <span class="n">description_div</span> <span class="o">=</span> <span class="n">detail_soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s2">&quot;desc&quot;</span><span class="p">)</span>
-    
-    
-    <span class="n">start_quote_span</span> <span class="o">=</span> <span class="n">description_div</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;span&#39;</span><span class="p">,</span> <span class="s1">&#39;quote&#39;</span><span class="p">)</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">start_quote_span</span><span class="p">):</span>
-        <span class="n">start_quote</span> <span class="o">=</span> <span class="n">start_quote_span</span><span class="o">.</span><span class="n">text</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">start_quote</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-        
-    <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-    
-<span class="c1">#   first child is empty</span>
-<span class="c1">#   2nd child is the quote</span>
-<span class="c1">#   3rd child (index 2) is the description text. but it has some leading white-space.</span>
-    <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">child</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">description_div</span><span class="o">.</span><span class="n">children</span><span class="p">):</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">index</span><span class="o">==</span><span class="mi">2</span><span class="p">):</span>
-            <span class="n">description</span> <span class="o">=</span> <span class="n">child</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> 
-            
-    <span class="k">return</span> <span class="p">(</span><span class="n">start_quote</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">description</span><span class="p">))</span>
-
-
-
-<span class="n">headers</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;ep_number&quot;</span><span class="p">,</span> <span class="s2">&quot;episode_name&quot;</span><span class="p">,</span> <span class="s2">&quot;episode_detail_page_link&quot;</span><span class="p">,</span> <span class="s2">&quot;start_quote&quot;</span><span class="p">,</span> <span class="s2">&quot;description&quot;</span><span class="p">]</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;episode_code&quot;</span><span class="p">,</span> <span class="s2">&quot;season&quot;</span><span class="p">,</span><span class="s2">&quot;episode_number&quot;</span><span class="p">,</span> <span class="s2">&quot;episode_name&quot;</span><span class="p">,</span> <span class="s2">&quot;episode_detail_page_link&quot;</span><span class="p">]</span>
 
 <span class="n">all_episodes</span> <span class="o">=</span> <span class="p">[]</span>
 
 <span class="c1"># for row in soup.find_all(&#39;td&#39;, class_=&quot;xl65&quot;)[0:3]:</span>
 <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">soup</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s1">&#39;td&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s2">&quot;xl65&quot;</span><span class="p">):</span>
     <span class="k">if</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">string</span> <span class="ow">and</span> <span class="n">begins_with_number</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">string</span><span class="p">)):</span>
-        <span class="n">ep_number</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">string</span>
+        <span class="n">ep_code</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">string</span>
+        <span class="n">season</span> <span class="o">=</span> <span class="n">ep_code</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">ep_number</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">ep_code</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+        
         <span class="n">a_link</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span>
         <span class="n">episode_name</span> <span class="o">=</span> <span class="n">a_link</span><span class="o">.</span><span class="n">text</span>
         <span class="n">episode_detail_page_link</span> <span class="o">=</span> <span class="n">a_link</span><span class="p">[</span><span class="s1">&#39;href&#39;</span><span class="p">]</span>
-        
-        <span class="n">detail_page</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">episode_detail_page_link</span><span class="p">)</span>
-        <span class="n">detail_soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">detail_page</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
-        
-        <span class="n">start_quote</span><span class="p">,</span> <span class="n">description</span> <span class="o">=</span> <span class="n">parse_detailed_info_page</span><span class="p">(</span><span class="n">episode_detail_page_link</span><span class="p">)</span>
-                
-        <span class="nb">print</span><span class="p">(</span><span class="n">ep_number</span><span class="p">)</span>
+                        
+        <span class="nb">print</span><span class="p">(</span><span class="n">ep_code</span><span class="p">,</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">season</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="n">ep_number</span><span class="p">)</span>
+
+
         <span class="nb">print</span><span class="p">(</span><span class="n">episode_name</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">episode_detail_page_link</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">start_quote</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">description</span><span class="p">)</span>
 
-        <span class="n">episode</span> <span class="o">=</span> <span class="p">[</span><span class="n">ep_number</span><span class="p">,</span> <span class="n">episode_name</span><span class="p">,</span> <span class="n">episode_detail_page_link</span><span class="p">,</span> <span class="n">start_quote</span><span class="p">,</span> <span class="n">description</span><span class="p">]</span>
+        <span class="n">episode</span> <span class="o">=</span> <span class="p">[</span><span class="n">ep_code</span><span class="p">,</span><span class="n">season</span><span class="p">,</span> <span class="n">ep_number</span><span class="p">,</span> <span class="n">episode_name</span><span class="p">,</span> <span class="n">episode_detail_page_link</span><span class="p">]</span>
         <span class="n">all_episodes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">episode</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
 
-    
+        
+        
 </pre></div>
 
     </div>
@@ -13288,647 +13258,539 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>216
+<pre>216 : 2 - 16
 Cat and Mouse
 https://www.starwars.com/tv-shows/clone-wars/cat-and-mouse-episode-guide
-&#34;A wise leader knows when to follow&#34;
-A Separatist blockade surrounds Christophsis. Anakin&#39;s fleet is tasked with deploying relief supplies to the surface but they are massively out-gunned and out-maneuvered by the skillful Admiral Trench. Obi-Wan arrives and unveils the Republic&#39;s new weapon: a stealth ship. The stealth ship is the last hope at besting the cunning Separatist fleet commander and aiding the battered people of Christophsis.
  
-116
+116 : 1 - 16
 Hidden Enemy
 https://www.starwars.com/tv-shows/clone-wars/the-hidden-enemy-episode-guide
-&#34;Truth enlightens the mind, but won&#39;t always bring happiness to your heart.&#34;
-Anakin Skywalker and Obi-Wan Kenobi lead Republic forces in an attempt to defeat the droid armies and free the planet of Christophsis from the Separatist siege. When the Republic is ambushed and forced to retreat, it becomes clear that someone in their midst has set them up. The Jedi believe this infiltration is a Sith-backed operation and go behind enemy lines to investigate. Meanwhile, Captain Rex and Commander Cody set out to uncover the traitor amongst them.
  
-301
+301 : 3 - 1
 Clone Cadets
 https://www.starwars.com/tv-shows/clone-wars/clone-cadets-episode-guide
-&#34;Brothers in arms are brothers for life.&#34;
-Five headstrong clones struggle to complete their training on Kamino. These cadets -- Hevy, Cutup, Droidbait, Fives and Echo -- seem to be a &#34;bad batch&#34; and are unable to work as a team. As Shaak Ti and drill instructors Bric and El-Les debate the cadets&#39; fate, the clones learn to work together and accept their destiny as soldiers.
  
-303
+303 : 3 - 3
 Supply Lines
 https://www.starwars.com/tv-shows/clone-wars/supply-lines-episode-guide
-&#34;Where there&#39;s a will, there&#39;s a way.&#34;
-Ryloth is under siege. Trapped on the surface, Jedi Master Di rallies the local forces with the help of Cham Syndulla. Desperate to save them, the Jedi Council dispatches Senator Bail Organa and Representative Jar Jar Binks to the planet Toydaria, where they are to convince the neutral regent, King Katuunko, to send aid to Ryloth. Bail and Jar Jar must convince Toydaria that their cause is just -- before it&#39;s too late. Trade Federation envoy Lott Dod attempts to prevent the Toydarians from giving up their neutrality. Katuunko follows his conscience and secretly aids the Republic, which Jar Jar is able to keep secret from the snooping Trade Federation agents with his inimitable distractions.
  
-101
+101 : 1 - 1
 Ambush
 https://www.starwars.com/tv-shows/clone-wars/ambush-episode-guide
-&#34;Great leaders inspire greatness in others.&#34;
-Jedi Master Yoda and three clone troopers -- Jek, Thire, and Rys -- must face off against Count Dooku&#39;s dreaded assassin Ventress and her massive droid army to prove the Jedi are strong enough to protect a strategic planet and forge a treaty for the Republic.
  
-102
+102 : 1 - 2
 Rising Malevolence
 https://www.starwars.com/tv-shows/clone-wars/rising-malevolence-episode-guide
-&#34;Belief is not a matter of choice, but of conviction.&#34;
-An attack by a devastating new Separatist weapon -- the powerful starship Malevolence -- leaves Jedi Master Plo Koon and his clone troopers struggling to survive until Anakin and Ahsoka can find them.
  
-103
+103 : 1 - 3
 Shadow of Malevolence
 https://www.starwars.com/tv-shows/clone-wars/shadow-of-malevolence-episode-guide
-&#34;Easy is the path to wisdom for those not blinded by themselves.&#34;
-With the help of his Padawan Ahsoka and Jedi Master Plo Koon, Anakin utilizes new long-range Y-wing bombers to lead a bold strike on General Grievous&#39; warship, the Malevolence, and its destructive weapon.
  
-104
+104 : 1 - 4
 Destroy Malevolence
 https://www.starwars.com/tv-shows/clone-wars/destroy-malevolence-episode-guide
-&#34;A plan is only as good as those who see it through.&#34;
-Padmé Amidala and C-3PO are taken hostage by General Grievous, leaving Anakin and Obi-Wan to save the Senator and complete the destruction of the Malevolence.
  
-105
+105 : 1 - 5
 Rookies
 https://www.starwars.com/tv-shows/clone-wars/rookies-episode-guide
-&#34;The best confidence builder is experience.&#34;
-Alone on a distant outpost, clone officers Rex and Cody must inspire their rookie unit to believe in themselves to stave off a droid commando invasion.
  
-106
+106 : 1 - 6
 Downfall of a Droid
 https://www.starwars.com/tv-shows/clone-wars/downfall-of-a-droid-episode-guide
-&#34;Trust in your friends, and they&#39;ll have reason to trust in you.&#34;
-R2-D2 is lost during a fierce space battle -- and Anakin must find him before the Separatists discover the Jedi military secrets locked in his memory banks.
  
-107
+107 : 1 - 7
 Duel of the Droids
 https://www.starwars.com/tv-shows/clone-wars/duel-of-the-droids-episode-guide
-&#34;You hold onto friends by keeping your heart a little softer than your head.&#34;
-Anakin, Ahsoka and replacement droid R3-S6 embark on a dual rescue/sabotage mission when they discover R2-D2 is being held at General Grievous&#39; secret enemy listening post, Skytop Station.
  
-108
+108 : 1 - 8
 Bombad Jedi
 https://www.starwars.com/tv-shows/clone-wars/bombad-jedi-episode-guide
-&#34;Heroes are made by the times.&#34;
-On a diplomatic mission to the planet Rodia, Padmé; discovers that her old friend and fellow Republic senator Onaconda Farr has allied his planet with the Separatists. In exchange for food and resources for his people, Onaconda captures Padmé and promises to deliver her to the Nute Gunray. Sensing Padmé is in trouble, Jar Jar Binks disguises himself as a Jedi, and with the help of C-3PO, courageously fights to rescue his friend and fellow senator.
  
-109
+109 : 1 - 9
 Cloak of Darkness
 https://www.starwars.com/tv-shows/clone-wars/cloak-of-darkness-episode-guide
-&#34;Ignore your instincts at your peril.&#34;
-Ahsoka and Jedi Master Luminara escort the captured notorious Separatist leader Nute Gunray to Coruscant so he can stand trial for his crimes. However, they are unaware that Count Dooku has sent his assassin, Asajj Ventress, to free their captive. With the help of Senate Commandos, the Jedi have to thwart Ventress&#39;s efforts to free their prisoner, despite the traitorous plans of Senate Guard Captain Argyus.
  
-110
+110 : 1 - 10
 Lair of Grievous
 https://www.starwars.com/tv-shows/clone-wars/lair-of-grievous-episode-guide
-&#34;Most powerful is he who controls his own power.&#34;
-Jedi Master Kit Fisto and his former Padawan, the Mon Calamari Jedi Nahdar Vebb, track escaped prisoner Nute Gunray to a remote world. Following Nute into a mysterious den filled with strange creatures, weapons, and war-time artifacts, the Jedi discover it is the trap-laden lair of General Grievous! Learning that Count Dooku has led the Jedi there in order to punish Grievous for his recent failures, the General is determined to prove his abilities and destroy the Jedi. Kit and Nahdar, along with a contingent of clones, must now fight their way past Grievous and his caretaker droid A-4D to avoid being caught in General&#39;s evil clutches forever.
  
-111
+111 : 1 - 11
 Dooku Captured
 https://www.starwars.com/tv-shows/clone-wars/dooku-captured-episode-guide
-&#34;The winding path to peace is always a worthy one, regardless of how many turns it takes.&#34;
-During their own attempt to kidnap Count Dooku, Anakin and Obi-Wan discover that the Sith Lord has already been captured by pirates. Hondo Ohnaka and his gang of pirates hold Dooku captive in their den on Florrum, and hold him for ransom. It&#39;s up to Anakin and Obi-Wan to see if the offer is too good to be true.
  
-112
+112 : 1 - 12
 The Gungan General
 https://www.starwars.com/tv-shows/clone-wars/the-gungan-general-episode-guide
-&#34;Fail with honor rather than succeed by fraud.&#34;
-Anakin and Obi-Wan have been duped and are being held for ransom along with Count Dooku by the pirate chief Hondo Ohnaka and his second-in-command, Turk Falso. While Anakin, Obi-Wan and Dooku unsuccessfully attempt to escape, the Republic sends the ransom via a special envoy, including Representative Jar Jar Binks. When Falso tries to steal the ransom from his boss by shooting down the shuttle, the only survivors are a squad of clones and Jar Jar, who as the most senior officer alive, has to take charge of the mission. It becomes a race against time as Jar Jar rushes to deliver the ransom to take custody of Dooku and save the Jedi.
  
-113
+113 : 1 - 13
 Jedi Crash
 https://www.starwars.com/tv-shows/clone-wars/jedi-crash-episode-guide
-&#34;Greed and fear of loss are the roots that lead to the tree of evil.&#34;
-Anakin and Ahsoka arrive at a pitched sky battle to help besieged Jedi General Aayla Secura. Anakin is gravely injured in the fight. Aayla and Ahsoka, along with the now-wounded Anakin, Rex, and the surviving clones, crash land on the uncharted grass-covered planet, Maridun. Forced to leave Anakin behind in order to save him, Aayla teaches Ahsoka why the Jedi have no personal attachments. They make their way to a Lurmen village. Their ruler, Tee Watt Kaa, explains that they&#39;re pacifists in this war and are not aligned with either side. Hesitant to have anything to do with the Jedi, Tee Watt Kaa agrees to help save Anakin&#39;s life.
  
-114
+114 : 1 - 14
 Defenders of Peace
 https://www.starwars.com/tv-shows/clone-wars/defenders-of-peace-episode-guide
-&#34;When surrounded by war, one must eventually choose a side.&#34;
-The leader of the Lurmen, Tee Watt Kaa, refuses to shelter the Jedi from arriving Separatist forces, fearing that such an action would unnecessarily bring his neutral people into the war. Ahsoka, Aayla, the wounded Anakin, and the rest of the clones respect their wishes as they don&#39;t want to jeopardize the village with their presence, so they have to retreat into the wilds of the planet. Separatist Neimoidian General Lok Durd arrives to test a devastating weapon, which they plan to use on the Lurmen! Ultimately, the villagers have to decide whether they will lay down to the Separatists or fight with the Jedi to defend their village.
  
-115
+115 : 1 - 15
 Trespass
 https://www.starwars.com/tv-shows/clone-wars/trespass-episode-guide
-&#34;Arrogance diminishes wisdom.&#34;
-Arriving on the desolate ice world of Orto Plutonia, Anakin Skywalker and Obi-Wan Kenobi investigate the disappearance of a clone security force stationed on a remote outpost. The Jedi, accompanied by Senator Riyo Chuchi and Chairman Cho of the nearby moon of Pantora, soon discover their clone troopers were attacked by a tribe of furry natives known as the Talz. Fierce beast-riding warriors, the Talz are very territorial and only want to be left alone. The Jedi manage to negotiate peace with the Talz chieftain, Thi-Sen, when greedy Chairman Cho breaks it by insisting the planet and the Talz are under his power. The resulting conflict escalates into war between the senator led clones and the Talz, with the Jedi in the middle.
  
-117
+117 : 1 - 17
 Blue Shadow Virus
 https://www.starwars.com/tv-shows/clone-wars/blue-shadow-virus-episode-guide
-&#34;Fear is a disease; hope is its only cure.&#34;
-The Republic discovers a Separatist bio-weapon lab hidden on the planet of Naboo. Rather than wait for help, Padmé; explores the lab with Jar Jar. Anakin, Ahsoka, Rex, and Obi-Wan arrive and follow after her. They find that the Senator is being held captive by the  sinister Dr. Nuvo Vindi. The mad scientist has been developing a lethal virus for the Separatists. Vindi threatens to set off a bomb and release the virus!
  
-118
+118 : 1 - 18
 Mystery of a Thousand Moons
 https://www.starwars.com/tv-shows/clone-wars/mystery-of-a-thousand-moons-episode-guide
-&#34;A single chance is a galaxy of hope.&#34;
-Even though the lab has been shut down, Dr. Vindi manages to activate the dreaded Blue Shadow Virus, infecting Ahsoka, Padmé, and many clone troopers. The plague is fatal within 48 hours. Anakin and Obi-Wan must travel to the mysterious planet, Iego, to secure the only known antidote to the sickness. Anakin and Obi-Wan arrive on the mysterious planet to find its population living in fear of a mysterious force that has been killing anything that tries to leave their world. With the help of Jaybo Hood, a clever Iegoan boy, Anakin and Obi-Wan must solve the planet&#39;s mystery before they can leave, and before everyone infected with the Separatist virus dies!
  
-119
+119 : 1 - 19
 Storm over Ryloth
 https://www.starwars.com/tv-shows/clone-wars/storm-over-ryloth-episode-guide
-&#34;It is a rough road that leads to the heights of greatness.&#34;
-Ryloth, home world of the Twi&#39;lek people, has been subjected to military occupation by the droid army of the Separatists, and surrounded by a blockade of Trade Federation battleships. While launching a surprise attack against the blockade, Ahsoka disobeys Anakin&#39;s orders and ends up losing most of her squadron. Even though she&#39;s emotionally rocked by this failure, Anakin helps her learn to persevere, placing her in charge of another risky attack.
  
-120
+120 : 1 - 20
 Innocents of Ryloth
 https://www.starwars.com/tv-shows/clone-wars/innocents-of-ryloth-episode-guide
-&#34;The costs of war can never be truly accounted for.&#34;
-With the space blockade around Ryloth destroyed, Obi-Wan Kenobi must lead a small clone force into a droid occupied town to sabotage their anti-aircraft guns. Obi-Wan&#39;s mission is complicated when he learns the town&#39;s inhabitants are being used as living shields. A pair of clones in his platoon forges an unlikely friendship with a refugee Twi&#39;lek girl, Numa, who&#39;s been orphaned by the war. Through their relationship with her, the clones begin to understand the real cost of the war...
  
-121
+121 : 1 - 21
 Liberty on Ryloth
 https://www.starwars.com/tv-shows/clone-wars/liberty-on-ryloth-episode-guide
-&#34;Compromise is a virtue to be cultivated, not a weakness to be despised.&#34; 
-The battle for the Twi&#39;lek homeworld of Ryloth rages as the Republic attempts to drive off the occupying droid army led by Separatist Leader, Wat Tambor. With his forces stretched thin, Mace Windu must convince Twi&#39;lek freedom fighter, Cham Syndulla, to help him save the capital city from the droids&#39; destruction. Initially, the Twi&#39;lek hero is hesitant to aid Mace, but ultimately realizes the Jedi can be trusted and joins with him to liberate the city -- and ultimately the planet -- in the climactic battle.
  
-201
+201 : 2 - 1
 Holocron Heist
 https://www.starwars.com/tv-shows/clone-wars/holocron-heist-episode-guide
-&#34;A lesson learned is a lesson earned.&#34;
-Cad Bane has been hired by Darth Sidious to steal a Jedi holocron. The holocrons -- data storage systems that can only be opened through the Force -- are protected within a vault inside the Jedi Temple. Recruiting a changeling posing as a Jedi in his plot, Bane infiltrates the building&#39;s security systems and leads Anakin, Obi-Wan and Ahsoka on a chase.
  
-202
+202 : 2 - 2
 Cargo of Doom
 https://www.starwars.com/tv-shows/clone-wars/cargo-of-doom-episode-guide
-&#34;Overconfidence is the most dangerous form of carelessness.&#34;
-Anakin and Ahsoka travel to the planet Devaron in pursuit of Cad Bane, who has stolen a Jedi holocron. Bane has captured Jedi Master Bolla Ropal, keeper of the Kyber crystal, which will reveal data on every known Force-sensitive child in the galaxy when combined with the holocron. Failing to force Ropal to open the holocron, Bane needs another Jedi. Capturing Ahsoka, the bounty hunter forces Anakin to open the holocron to save his Padawan. The holocron&#39;s secrets revealed, Bane attempts an escape, but appears to be killed by a clone. Anakin, however, still senses Bane&#39;s presence in the Force...
  
-203
+203 : 2 - 3
 Children of the Force
 https://www.starwars.com/tv-shows/clone-wars/children-of-the-force-episode-guide
-
-
  
-217
+217 : 2 - 17
 Bounty Hunters
 https://www.starwars.com/tv-shows/clone-wars/bounty-hunters-episode-guide
-&#34;Courage makes heroes, but trust builds friendship.&#34;
-Anakin, Obi-Wan, and Ahsoka crash on Felucia and seek aid from the local spice farmers only to learn that the farmers are the ones who are in real need. Beset by Hondo Ohnaka and his band of pirates who plan to steal their crop, the farmers have contracted four deadly bounty hunters to protect their wares. In an unlikely partnership, the Jedi must work with the farmers&#39; hired guns to beat back Hondo and his brigands.
  
-218
+218 : 2 - 18
 The Zillo Beast
 https://www.starwars.com/tv-shows/clone-wars/the-zillo-beast-episode-guide
-&#34;Choose what is right, not what is easy.&#34;
-Desperate to turn the tide of a fierce battle on Malastare and win a strategic alliance with the Dugs, Chancellor Palpatine orders the Jedi to drop the Republic&#39;s newest super-weapon, an untested electro proton bomb. Unfortunately, the bomb&#39;s blast awakens an ancient and fearsome Zillo Beast, a monster of legendary size and ferocity. Now the Jedi must contain this deadly creature despite the interference of the bloodthirsty Dugs, who have their own agenda.
  
-219
+219 : 2 - 19
 The Zillo Beast Strikes Back
 https://www.starwars.com/tv-shows/clone-wars/the-zillo-beast-strikes-back-episode-guide
-&#34;The most dangerous beast is the beast within.&#34;
-Per Palpatine&#39;s order, Republic forces transport a fearsome Zillo Beast back to Coruscant for scientific study. Eager to extract the beast&#39;s secrets for military gain, Palpatine orders his lead scientist to examine, and subsequently, kill the monster. Filled with pain and anger, the Zillo Beast escapes from the lab and begins devastating the city. Soon, Anakin, Padmé, and Palpatine find themselves pursued by the beast while the Jedi fight to contain it. In a climactic showdown, the Jedi are faced with having to save the lives of millions of innocents on Coruscant by destroying the Zillo Beast, the last of its kind.
  
-204
+204 : 2 - 4
 Senate Spy
 https://www.starwars.com/tv-shows/clone-wars/senate-spy-episode-guide
-&#34;A true heart should never be doubted.&#34;
-The Jedi Council suspects that Senator Rush Clovis, an InterGalactic Banking Clan delegate and former colleague of Padmé Amidala, may be working for the Separatists. Against Anakin&#39;s wishes, the Council asks Padmé if she would accompany Rush to Cato Neimoidia to uncover any clues regarding the Senator&#39;s true allegiances. Padmé agrees, feeling that her past relationship with the Senator -- which for a time had been romantic until she ended it -- might give her an advantage in the investigation. Fending off Anakin&#39;s jealousy, as well as an attempt on her life by Neimoidian Lott Dod, Padmé successfully reveals Clovis to be conspiring with the Separatists to build a military droid factory on Geonosis.
  
-205
+205 : 2 - 5
 Landing at Point Rain
 https://www.starwars.com/tv-shows/clone-wars/landing-at-point-rain-episode-guide
-&#34;Believe in yourself or no one else will.&#34;
-Anakin, Obi-wan, and Ki-Adi-Mundi lead an invasion to stop Poggle the Lesser and the Geonosians from rebuilding their droid army. Things go terribly awry when Geonosian forces shoot down the Republic ships, which crash off-course. Under mounting pressure to accomplish their mission, Anakin, Obi-Wan, and Ki-Adi-Mundi each have their own set of challenges to overcome -- hordes of enemy troops, deadly traps, unforgiving terrain, and a massive energy shield.
  
-206
+206 : 2 - 6
 Weapons Factory
 https://www.starwars.com/tv-shows/clone-wars/weapons-factory-episode-guide
-&#34;No gift is more precious than trust.&#34;
-Anakin, Ahsoka, Luminara Unduli and her Padawan, Barriss Offee, lead a mission to destroy a droid factory on Geonosis. But Poggle the Lesser has other plans as he deploys his newest weapon, the indestructible super tanks. Desperate to accomplish their mission before the foundry comes online, the Jedi devise a daring plan in which Anakin and Luminara will act as decoys, diverting the super tanks, while Ahsoka and Barriss infiltrate the plant via a labyrinth of catacombs beneath the city. The plan is risky. The stakes are high. It&#39;s their only option, but are the Padawans up to the challenge?
  
-207
+207 : 2 - 7
 Legacy of Terror
 https://www.starwars.com/tv-shows/clone-wars/legacy-of-terror-episode-guide
-&#34;Sometimes, accepting help is harder than offering it.&#34;
-After a battle to destroy a new droid factory on Geonosis, Jedi Master Luminara Unduli disappears while tracking Poggle the Lesser. Obi-Wan and Anakin lead a platoon of clone troopers in search of her. Following her trail, our heroes descend deep into the lair of Karina the Great. To their horror, they learn that the hive is alive and teeming with undead defenders. Apparently, Karina can reanimate and control her subjects. Will Obi-Wan and Anakin overcome Karina&#39;s undead horde and find Luminara before it&#39;s too late?
  
-208
+208 : 2 - 8
 Brain Invaders
 https://www.starwars.com/tv-shows/clone-wars/brain-invaders-episode-guide
-&#34;Attachment is not compassion.&#34;
-Medical supplies are desperately needed for a crucial Republic battlefront. While the Jedi Knights transport Poggle the Lesser as a prisoner to Coruscant, the Padawans Barriss Offee and Ahsoka Tano are dispatched to escort the medical frigate to its destination.   When Geonosian brain worms take control of the clone troopers aboard their supply ship, Ahsoka and Barriss must battle to stop the vessel from unleashing the deadly plague upon the galaxy.
  
-209
+209 : 2 - 9
 Grievous Intrigue
 https://www.starwars.com/tv-shows/clone-wars/grievous-intrigue-episode-guide
-&#34;For everything you gain, you lose something else.&#34;
-Jedi Master Eeth Koth is taken hostage and tortured by General Grievous. Anakin Skywalker, Obi-Wan Kenobi and Adi Gallia devise a daring rescue plan, but they soon realize the General has a plan of his own. The Jedi Knights and the Separatist general try to outmaneuver each other in a ship-to-ship and hand-to-hand battle high over the planet Saleucami.
  
-210
+210 : 2 - 10
 The Deserter
 https://www.starwars.com/tv-shows/clone-wars/the-deserter-episode-guide
-&#34;It is the quest for honor that makes one honorable.&#34;
-General Grievous is shot down over Saleucami and crash lands in the wilderness. Obi-Wan leads an expedition to find the droid general.   Rex is injured during the search, and must recover in a local farmer&#39;s barn, but he is shocked to discover the farmer is a clone deserter.
  
-211
+211 : 2 - 11
 Lightsaber Lost
 https://www.starwars.com/tv-shows/clone-wars/lightsaber-lost-episode-guide
-&#34;Easy isn&#39;t always simple.&#34;
-During an assignment in the Coruscant underworld, a wily pickpocket steals Ahsoka&#39;s lightsaber. Ahsoka enlists the help of an ancient Jedi, Tera Sinube, to track down her weapon and reclaim her honor.
  
-212
+212 : 2 - 12
 The Mandalore Plot
 https://www.starwars.com/tv-shows/clone-wars/the-mandalore-plot-episode-guide
-&#34;If you ignore the past, you jeopardize your future.&#34;
-Alarming rumors about the peace-abiding Duchess Satine of Mandalore prompt Obi-Wan to investigate the secluded planet. Satine wants to keep Mandalore neutral in the Clone Wars, but the actions of a violent splinter group -- Death Watch -- threaten to push the planet towards war.
  
-213
+213 : 2 - 13
 Voyage of Temptation
 https://www.starwars.com/tv-shows/clone-wars/voyage-of-temptation-episode-guide
-&#34;Fear not for the future, weep not for the past.&#34;
-Duchess Satine travels from Mandalore to Coruscant on a diplomatic mission, with Obi-Wan Kenobi, Anakin Skywalker and a team of troopers to defend her. As her luxurious starship, Coronet, makes its way through hyperspace, the Jedi must stop several assassination attempts, and Anakin discovers that Obi-Wan and the Duchess have a history together.
  
-214
+214 : 2 - 14
 Duchess of Mandalore
 https://www.starwars.com/tv-shows/clone-wars/duchess-of-mandalore-episode-guide
-&#34;In war, truth is the first casualty.&#34;
-On Coruscant, word reaches Duchess Satine that Death Watch is mobilizing, sparking a pre-emptive Republic invasion. On the run from Republic authorities, Satine and Obi-Wan set off to discover the group&#39;s true motives.
  
-220
+220 : 2 - 20
 Death Trap
 https://www.starwars.com/series/clone-wars/death-trap-episode-guide
-&#34;Who my father was matters less than my memory of him.&#34; 
-Determined to kill Jedi Master Mace Windu, young Boba Fett poses as a clone cadet and sneaks aboard a Jedi cruiser to plant a bomb in Windu&#39;s quarters. But Boba&#39;s plan goes awry when the blast fails to kill Mace and, suddenly, every clone aboard is looking for the saboteur. Boba destroys the ship&#39;s reactor to create a distraction and, soon, the entire cruiser begins to break apart. Unaware that Boba is the culprit, Boba&#39;s new cadet comrades save his life but is he too obsessed with revenge to do the same for them?
  
-221
+221 : 2 - 21
 R2 Come Home
 https://www.starwars.com/tv-shows/clone-wars/r2-come-home-episode-guide
-&#34;Adversity is friendship&#39;s truest test.&#34;
-Boba Fett and his band of bounty hunters lead Anakin and Mace into a deadly trap on Vanqor. It&#39;s up to R2-D2 to journey back to Coruscant and warn the Jedi of their brethrens&#39; peril. Battling beast and bounty hunter along the way, the trusty droid finally communicates his warning to Ahsoka and Plo Koon, who rush to Vanqor to save Mace and Anakin from a fiery death.
  
-222
+222 : 2 - 22
 Lethal Trackdown
 https://www.starwars.com/tv-shows/clone-wars/lethal-trackdown-episode-guide
-&#34;Insignificant problems, left unchecked, often become significant problems.&#34;
-Following a nefarious attempt to murder Anakin Skywalker and Mace Windu on Vanqor, Boba Fett and Aurra Sing go into hiding. Jedi Master Plo Koon and Ahsoka Tano set out to capture the bounty hunters. While combing through the lower depths of the Coruscant underworld, Plo and Ahsoka finally learn that Fett and his group are hiding out on Florrum. In a dramatic showdown, Fett is abandoned by Aurra Sing, leaving young Boba angry and bitter in Republic custody.
  
-305
+305 : 3 - 5
 Corruption
 https://www.starwars.com/tv-shows/clone-wars/corruption-episode-guide
-&#34;The challenge of hope is to overcome corruption.&#34; 
-Padmé, on a diplomatic mission to Mandalore, guarantees the pacifist planet the Republic&#39;s full protection, but she and Duchess Satine soon find something sinister lurking beneath the planet&#39;s serene facade. Moogan smugglers have been sneaking in supplies, including bottled tea destined for the Mandalorian schools. To increase their profits, they have been diluting the tea with a hazardous chemical.
  
-306
+306 : 3 - 6
 The Academy
 https://www.starwars.com/tv-shows/clone-wars/the-academy-episode-guide
-&#34;Those who enforce the law must obey the law.&#34;
-Ahsoka is assigned to teach a class at a leadership academy on Mandalore. Soon after she arrives, Duchess Satine&#39;s zealous nephew -- Korkie -- and his classmates uncover a nefarious plot. Prime Minister Almec is revealed to be an active part of the black market conspiracy on Mandalore, and he attempts to permanently silence Duchess Satine and the cadets before they expose his corruption. Ahsoka and the cadets defeat Almec before he can succeed.
  
-307
+307 : 3 - 7
 Assassin
 https://www.starwars.com/tv-shows/clone-wars/assassin-episode-guide
-&#34;The future has many paths -- choose wisely.&#34;
-Tasked to protect Senator Padmé Amidala during a political mission to Alderaan, Padawan Ahsoka Tano is plagued by recurring visions of recently-deceased bounty hunter, Aurra Sing. Unable to clear her mind, Ahsoka worries that the stress of conflict is finally getting to her until her visions indeed prove prophetic. Padmé narrowly avoids death when Aurra Sing attempts to assassinate her. Together, Padmé and Ahsoka trap the hunter, and Ahsoka discovers the true villain behind the plot to kill Padmé: the incarcerated gangster, Ziro the Hutt.
  
-302
+302 : 3 - 2
 ARC Troopers
 https://www.starwars.com/tv-shows/clone-wars/arc-troopers-episode-guide
-&#34;Fighting a war tests a soldier&#39;s skills, defending his home tests a soldier&#39;s heart.&#34;
-The Republic learns of an impending Separatist attack on Kamino, and Anakin and Obi-Wan hurry to the planet. After the Republic repulses the Separatists&#39; diversionary assault, the real attack begins. Asajj Ventress, General Grievous and an army of droids rise out of the oceans, bent on destroying Kamino&#39;s clone production facilities. Rex, Cody, Fives and Echo lead the clones in a desperate defense of their home planet.
  
-304
+304 : 3 - 4
 Sphere of Influence
 https://www.starwars.com/tv-shows/clone-wars/sphere-of-influence-episode-guide
-&#34;A child stolen is a lost hope.&#34;
-Chi Eekway and Che Amanwe, Chairman Papanoida&#39;s daughters, are kidnapped and held for ransom. Ahsoka Tano teams up with the Senator from Pantora, Riyo Chuchi, to aid the new chairman in recovering his family before the Trade Federation can unduly influence the future of his planet. The Chairman and his son, Ion, track down the kidnapper -- Greedo -- on Tatooine, and rescue Che Amanwe. Meanwhile, Ahsoka and Chuchi find Chi Eekway held captive aboard a blockading Trade Federation battleship over Pantora, and expose Trade Federation officer Sib Canay as a Separatist conspirator.
  
-308
+308 : 3 - 8
 Evil Plans
 https://www.starwars.com/tv-shows/clone-wars/evil-plans-episode-guide
-&#34;A failure in planning is a plan for failure.&#34;
-In the middle of a routine shopping trip on Coruscant, C-3PO is abducted by the bounty hunter Cad Bane. Bane is looking for information about the Senate building on behalf of Jabba the Hutt. Finding C-3PO devoid of useful information, Bane and his accomplices kidnap R2-D2 and extract the vital data, before memory-wiping the droids of the incident, and letting them on their way. The floor-plans and security details of the Senate building are part of a plot engineered by the Hutt families to free their imprisoned brother, Ziro the Hutt, who holds potentially damaging information about Hutt activities.
  
-122
+122 : 1 - 22
 Hostage Crisis
 https://www.starwars.com/tv-shows/clone-wars/hostage-crisis-episode-guide
-&#34;A secret shared is a trust formed.&#34;
-In an attempt to force the release of the crime lord Ziro the Hutt from prison, bounty hunters seize control of the Senate Building and hold members of the Senate hostage. Cad Bane, the leader of the operation, with the help of bounty hunter Aurra Sing, issues his demands to Chancellor Palpatine who has no choice but to meet his request. Unbeknownst to the hunters, Jedi Knight Anakin Skywalker is loose in the Senate Building.
  
-309
+309 : 3 - 9
 Hunt for Ziro
 https://www.starwars.com/tv-shows/clone-wars/hunt-for-ziro-episode-guide
-&#34;Love comes in all shapes and sizes.&#34;
-Cad Bane has broken Ziro the Hutt out of prison. The Hutt Council demands that Ziro tell them where he&#39;s hidden vital -- and incriminating -- information: a journal detailing the criminal activities of the Hutt families. Ziro makes another daring escape with the help of his estranged (and strange) lover, Sy Snootles. Bane is back on the Hutt&#39;s trail -- but he&#39;s not the only one. The Jedi Obi-Wan Kenobi and Quinlan Vos need to find him too.     A chase through the swamps of Nal Hutta leads the pursuers to Ziro&#39;s enormous mother, Mama the Hutt, who points them to Teth. It is here, in the secret grave of Ziro&#39;s father, that the fugitive Hutt has hidden the diary. When he retrieves it, Snooty reveals her true spots. She&#39;s a deadly woman scorned and a bounty hunter for hire!
  
-310
+310 : 3 - 10
 Heroes on Both Side
 https://www.starwars.com/tv-shows/clone-wars/heroes-on-both-sides-episode-guide
-&#34;Fear is a great motivator.&#34;
-When the Senate begins debating a bill that would eliminate government oversight of the Banking Clan&#39;s activities in order to fund the war, Padmé and Ahsoka travel in secret to the capital of the Confederacy of Independent Systems. Amidala attempts to forge a peace agreement with the Separatists, while Ahsoka sees, for the first time, the people of the Confederacy. Padmé&#39;s friend, Mina Bonteri, spearheads the peace initiative, and convinces the Separatist Congress to sue for peace.     Meanwhile, on Coruscant, Senators Lott Dod and Gume Saam conspire with Banking Clan representative Nix Card and Count Dooku to make the banking deregulation a reality. At Dooku&#39;s command, General Grievous engineers an attack at the central power distribution grid on Coruscant, carried out by Separatist demolition droids. The chaos and panic spreads to the Senate, which vehemently rejects the Separatist peace initiative.
  
-311
+311 : 3 - 11
 Pursuit of Peace
 https://www.starwars.com/tv-shows/clone-wars/pursuit-of-peace-episode-guide
-&#34;Truth can strike down the spectre of fear.&#34;
-Padmé, Bail Organa and Onaconda Farr attempt to rally Senators in opposition to a bill that would appropriate funds for millions of new clone troops and have disastrous financial consequences for the Republic. Their opposition to the measure, however, soon makes them targets for intimidation and attacks by hired guns. After escaping two hired thugs -- Chata Hyoki and Robonino -- in a harrowing speeder bike chase, Padmé is able to sway the Senate with a stirring account of how the war has affected an everyday civilian, her handmaiden Teckla Minnau.
  
-215
+215 : 2 - 15
 Senate Murders
 https://www.starwars.com/tv-shows/clone-wars/senate-murders-episode-guide
-&#34;Searching for the truth is easy. Accepting the truth is hard.&#34;
-When Senator Onaconda Farr dies under suspicious circumstances and the local Inspector appears incompetent, Padmé; sets out to find the person who poisoned her mentor. Following a trail of clues, Padmé and Bail Organa delve into a dangerous world of backstabbing, lies, and secrets controlled by the powerful Senators Mee Deechi and Halle Burtoni. Padmé&#39;s search forces her to risk her career and ideals but the true identity of the assassin is even more destructive than she could imagine.
  
-312
+312 : 3 - 12
 Nightsisters
 https://www.starwars.com/tv-shows/clone-wars/nightsisters-episode-guide
-&#34;The swiftest path to destruction is through vengeance.&#34;
-Troubled by Asajj Ventress&#39; growing prowess with the dark side of the Force, Darth Sidious commands Count Dooku to eliminate her. But Ventress survives Dooku&#39;s assassination attempt, and the jilted former apprentice vows to take revenge, enlisting the aid of her kinswomen -- the mystical Nightsisters -- in her sinister scheme.     Mother Talzin, leader of the Nightsisters, veils Asajj and her fellow assassins in a cloak of invisibility, and they infiltrate Dooku&#39;s palace on Serenno. Though they fail to kill the Count, their use of captured Jedi lightsabers leads Dooku to mistakenly believe that the Jedi have tried to kill him. Interested in protection, he requests a new apprentice from Mother Talzin.
  
-313
+313 : 3 - 13
 Monster
 https://www.starwars.com/tv-shows/clone-wars/monster-episode-guide
-&#34;Evil is not born, it is taught.&#34;
-When Count Dooku calls upon the Nightsisters seeking a replacement for Ventress, she and her kin seize the opportunity to exact revenge. Ventress visits the far side of Dathomir and the males of the planet seeking the most brutal and powerful warrior among them. Talzin has Asajj secretly select a warrior from the distant Nightbrother village: Savage Opress. With the power of dark magic, Talzin transforms Savage into a hulking warrior ultimately loyal to Asajj. She then delivers Opress to Dooku, where he will serve as his secret Sith apprentice in a plot to overthrow Darth Sidious.
  
-314
+314 : 3 - 14
 Witches of the Mist
 https://www.starwars.com/tv-shows/clone-wars/witches-of-the-mist-episode-guide
-&#34;The path to evil may bring great power, but not loyalty.&#34;
-Anakin and Obi-Wan, sent to track down the mysterious figure behind the deaths of several Jedi, soon find themselves on the trail of the monstrous apprentice that Ventress has created: Savage Opress, who has been trained in the ways of the Sith by Dooku.     When Opress returns to Count Dooku after an unsuccessful assignment, Ventress strikes. With Opress at her side, she attacks Dooku. Opress&#39; loyalty is fleeting, however, and Dooku and Ventress discover that this new apprentice has a will of his own.     When Savage returns to Mother Talzin, she gives him a new task: To seek the Outer Rim for his long-lost brother....
  
-315
+315 : 3 - 15
 Overlords
 https://www.starwars.com/tv-shows/clone-wars/overlords-episode-guide
-&#34;Balance is found in the one who faces his guilt.&#34; 
-A mysterious force draws Anakin, Obi-Wan and Ahsoka to a distant planet, and its inhabitants -- a family of exceptionally powerful Force-wielders -- in an attempt to determine whether Anakin is truly the Chosen One. The patriarch of this family, known only as the Father, has spent ages maintaining the balance between his Daughter, who is strong with the light side of the Force, and his Son, who aligns with the dark. The Father reveals his days are numbered, and he seeks Anakin to take his place as the fulcrum of this balance. A series of tests proves that Anakin is capable of controlling both offspring, as the Father does, but Skywalker refuses to take the Father&#39;s place.
  
-316
+316 : 3 - 16
 Altar of Mortis
 https://www.starwars.com/tv-shows/clone-wars/altar-of-mortis-episode-guide
-&#34;He who surrenders hope, surrenders life.&#34;
-Before the Jedi can leave Mortis, the Son takes Ahsoka captive in an attempt to entice Anakin into joining him to use their combined strength to overpower his Father and Sister. To this end, the Son casts Ahsoka under the spell of the dark side.     Meanwhile, the Father attempts to stave off a disastrous showdown between his children and maintain the Force&#39;s increasingly precarious balance on the planet. Fearing that the Son may be unstoppable, the Daughter does the forbidden by taking Obi-Wan Kenobi to the Altar of Mortis, wherein is kept the Dagger of Mortis, a weapon capable of killing a Force-wielder. The Son steals the weapon, and attempts to use it against his Father to steal his power and end his rule, but the Daughter sacrifices herself, placing herself in front of the blade.
  
-317
+317 : 3 - 17
 Ghosts of Mortis
 https://www.starwars.com/tv-shows/clone-wars/ghosts-of-mortis-episode-guide
-&#34;He who seeks to control fate shall never find peace.&#34;
-The Jedi remain stranded on Mortis, and the Son, aligned with the dark side of the Force, renews his efforts to convert Anakin as the Jedi prepare for a decisive confrontation. Anakin is stunned by images of his dark future. The Son promises him the power to avert this destiny.     The Father recognizes that the Son has broken the rules of time. He wipes Anakin&#39;s memory of these future visions, and steals the Mortis Dagger to end the conflict. The Father impales himself, thus preventing the Son from stealing his power. The Son, stunned by this, is run through by Anakin. With all three Force-wielders destroyed, the imbalance in the Force disappears on Mortis. The three Jedi are transplanted back to the galaxy proper, apparently at the moment that they disappeared.
  
-318
+318 : 3 - 18
 The Citadel
 https://www.starwars.com/tv-shows/clone-wars/the-citadel-episode-guide
-&#34;Adaptation is the key to survival.&#34;
-With help from R2-D2 and a squad of captured battle droids, an elite team of Jedi and clone troopers led by Obi-Wan and Anakin attempt to free a captive Jedi general, Even Piell, from an impenetrable prison. Despite orders to the contrary, Ahsoka Tano tags along, though she proves indispensable when the infiltration mission begins to evolve. Piell and his fleet officer, Captain Tarkin, are liberated from their cells, but now the fugitives must escape the Citadel itself.
  
-319
+319 : 3 - 19
 Counter Attack
 https://www.starwars.com/tv-shows/clone-wars/counterattack-episode-guide
-&#34;Anything that can go wrong will.&#34;
-With freed prisoners in their possession and the brutal warden attempting desperately to thwart them, Obi-Wan and Anakin search for a way out of the Citadel and back to Coruscant. The prison, however, has more traps, perils and pitfalls in store for them than they had imagined and they must work past their differences if they are to escape. Their bid to board their shuttle fails when heavy weapons fire destroys the escape craft. Trooper Echo dies in the blast. The escapees then flee to the caves and call for rescue from the Jedi Temple on Coruscant.
  
-320
+320 : 3 - 20
 Citadel Rescue
 https://www.starwars.com/tv-shows/clone-wars/citadel-rescue-episode-guide
-&#34;Without honor, victory is hollow.&#34;
-After their ship and only way off the planet is destroyed, Anakin and Obi-Wan must lead the escaped prisoners across Lola Sayu&#39;s perilous landscape as Plo Koon commands a task force of four cruisers and their fighters through the Separatist defenses in a daring rescue. Even Piell is ravaged by anooba tracking beasts, but before he dies, he passes on his Nexus Routes coordinates to Ahsoka. When the survivors return to Coruscant, Ahsoka knows half the intel, and refuses to disclose it to anyone but the Jedi Council, while Tarkin refuses to hand over his half to anyone other than the Chancellor.
  
-321
+321 : 3 - 21
 Padawan Lost
 https://www.starwars.com/tv-shows/clone-wars/padawan-lost-episode-guide
-&#34;Without humility, courage is a dangerous game.&#34;
-Ahsoka and a group of abducted younglings find themselves trapped on a Trandoshan moon, prey in an elaborate and cruel hunt. The forlorn younglings have lost all hope, despite the best efforts of their spirited leader, Kalifa. Ahsoka rallies them to defend themselves and strike back against the Trandoshan, an effort with deadly consequences.
  
-322
+322 : 3 - 22
 Wookiee Hunt
 https://www.starwars.com/tv-shows/clone-wars/wookiee-hunt-episode-guide
-&#34;A great student is what the teacher hopes to be.&#34;
-As Ahsoka and her youngling allies struggle to evade the Trandoshan hunters, their efforts receive an unexpected boost when a new captive -- Chewbacca the Wookiee -- arrives. Chewie scrounges parts from a wrecked Trandoshan slave ship, assembling a communicator to send out a distress signal. Help arrives in the towering, shaggy form of Wookiee warriors led by General Tarfful. Freed from captivity, Ahsoka returns to the Jedi Temple and is reunited with Anakin Skywalker.
  
-401
+401 : 4 - 1
 Water War
 https://www.starwars.com/tv-shows/clone-wars/water-war-episode-guide
-&#34;When destiny calls, the chosen have no choice.&#34;
-When the king of Mon Cala is assassinated, talks break down between the Mon Calamari people and the Quarren, co-inhabitants of the aquatic world. To stop a civil war, the Republic sends Padmé Amidala and Anakin Skywalker, but unbeknownst to them, the Quarren are already being backed by the Separatists. Now the Jedi must protect Mon Cala&#39;s new leader, the young Prince Lee-Char, from the attack.
  
-402
+402 : 4 - 2
 Gungan Attack
 https://www.starwars.com/tv-shows/clone-wars/gungan-attack-episode-guide
-&#34;Only through fire is a strong sword forged.&#34;
-Anakin Skywalker and the rest of his Jedi team have been overrun by the Separatist surprise attacks led by Riff Tamson while Prince Lee-Char and Ahsoka must evade capture on their own. Unable to summon more Republic aid, Yoda calls upon the help of the powerful and amphibious Gungan Grand Army, but whether they will be enough to stop the Separatist siege is uncertain. An incensed Tamson doubles his efforts in tracking down Prince Lee-Char, unleashing the reinforcements given to him by Count Dooku in an assault that churns the oceans.
  
-403
+403 : 4 - 3
 Prisoners
 https://www.starwars.com/tv-shows/clone-wars/prisoners-episode-guide
-&#34;Crowns are inherited, kingdoms are earned.&#34;
-The Republic and Gungan forces have been captured by Riff Tamson and his Karkarodon enforcers. Now, it is up to Ahsoka and the young Prince Lee-Char to unite the fractured people of Mon Cala and drive out the Separatist invaders.
  
-404
+404 : 4 - 4
 Shadow Warrior
 https://www.starwars.com/tv-shows/clone-wars/shadow-warrior-episode-guide
-&#34;Who a person truly is cannot be seen with the eye.&#34;
-When the leader of the Gungans, Boss Lyonie, is injured it&#39;s discovered there is an uncanny resemblance between the Boss and Jar Jar Binks. Binks must sway his people from rising against the Naboo and stopping a Separatist invasion led by General Grievous.
  
-405
+405 : 4 - 5
 Mercy Mission
 https://www.starwars.com/tv-shows/clone-wars/mercy-mission-episode-guide
-&#34;Understanding is honoring the truth beneath the surface.&#34;
-After groundquakes have devastated the planet Aleen, a Republic relief effort arrives, including the droids R2-D2 and C-3PO. When the native Aleena&#39;s pleas go unheard, it becomes the duty of the droids to embark on a surreal journey through Aleen&#39;s subterranean world to save the planet.
  
-406
+406 : 4 - 6
 Nomad Droids
 https://www.starwars.com/tv-shows/clone-wars/nomad-droids-episode-guide
-&#34;Who&#39;s the more foolish, the fool or the fool who follows him?&#34;
-C-3PO and R2-D2&#39;s bizarre caper continues. Forced to escape a Separatist attack in a Y-wing fighter, the droids visit the world of the Patitites, the odd planet Balnab, and the inside of a pirate warship where they are forced to fight in a gladiatorial arena.
  
-407
+407 : 4 - 7
 Darkness on Umbara
 https://www.starwars.com/tv-shows/clone-wars/darkness-on-umbara-episode-guide
-&#34;The first step toward loyalty is trust.&#34;
-When Anakin is forced to temporarily turn over command of his clone troopers to a new commander, the Jedi Pong Krell, tensions begin to run high as the clones are assigned with a very deadly mission to take the capital of Umbara.
  
-408
+408 : 4 - 8
 The General
 https://www.starwars.com/tv-shows/clone-wars/the-general-episode-guide
-&#34;The path of ignorance is guided by fear.&#34;
-General Krell orders Captain Rex and the clone troopers of the 501st Legion to conquer a heavily fortified Umbaran airbase, and will not accept anything less than victory. It is an almost certain suicide mission, unless the clones can use their ingenuity to defeat their new enemy.
  
-409
+409 : 4 - 9
 Plan of Dissent
 https://www.starwars.com/tv-shows/clone-wars/plan-of-dissent-episode-guide
-&#34;The wise man leads, the strong man follows.&#34;
-After the Republic conquers an Umbaran airbase, General Krell orders Rex and his men on towards the heavily fortified capital. Realizing there&#39;s a better plan, several clone troopers disobey orders to carry out a rogue, covert operation.
  
-410
+410 : 4 - 10
 Carnage of Krell
 https://www.starwars.com/tv-shows/clone-wars/carnage-of-krell-episode-guide
-&#34;Our actions define our legacy.&#34; 
-With two of his men facing execution for disobeying orders, Captain Rex must confront his overly aggressive commander, General Krell. Risking charges of mutiny, Rex must make a dark choice as the true face of the enemy emerges.
  
-411
+411 : 4 - 11
 Kidnapped
 https://www.starwars.com/tv-shows/clone-wars/kidnapped-episode-guide
-&#34;Where we are going always reflects where we came from.&#34;
-Zygerrian slavers are behind the sudden disappearance of an entire colony of people on the planet Kiros. As Anakin and Ahsoka rush to defuse a series of bombs planted by the slavers, Obi-Wan must fight with their imposing leader.
  
-412
+412 : 4 - 12
 Slaves of the Republic
 https://www.starwars.com/tv-shows/clone-wars/slaves-of-the-republic-episode-guide
-&#34;Those who enslave others inevitably become slaves themselves.&#34;
-To locate the missing colonists, Anakin, Obi-Wan and Ahsoka go undercover to infiltrate the slavers on Zygerria.  Anakin struggles with his emotions as a wily Zygerrian queen forces him to take questionable actions in order to carry out his mission.
  
-413
+413 : 4 - 13
 Escape from Kadavo
 https://www.starwars.com/tv-shows/clone-wars/escape-from-kadavo-episode-guide
-&#34;Great hope can come from small sacrifices.&#34;
-Anakin tries to convince the Zygerrian Queen that she too is a slave and pawn in an evil Separatist plot. Meanwhile, Obi-Wan toils in the slave camps of Kadavo, a grim situation that grows increasingly bleak.
  
-414
+414 : 4 - 14
 A Friend In Need
 https://www.starwars.com/series/clone-wars/-episode-guidea-friend-in-need
-&#34;Friendship shows us who we really are.&#34;
-A peace conference between Separatists and Republic delegates is interrupted by Lux Bonteri, the son of a late Separatist Senator, who involves Ahsoka in his dangerous search to find justice for his mother&#39;s death.
  
-415
+415 : 4 - 15
 Deception
 https://www.starwars.com/series/clone-wars/deception-episode-guide
-&#34;All warfare is based on deception.&#34; 
-When the Jedi learn of a Separatist plot to kidnap Chancellor Palpatine, one of them must go deep undercover as a hardened criminal to extract information from the conspirators.
  
-416
+416 : 4 - 16
 Friends and Enemies
 https://www.starwars.com/tv-shows/clone-wars/friends-and-enemies-episode-guide
-&#34;Keep your friends close, but keep your enemies closer.&#34;
-Fleeing across the galaxy with criminal fugitives, a disguised Obi-Wan, Cad Bane and Moralo Eval are tenaciously pursued by Anakin and Ahsoka, who have no idea they&#39;re chasing their friend.
  
-417
+417 : 4 - 17
 The Box
 https://www.starwars.com/tv-shows/clone-wars/the-box-episode-guide
-&#34;The strong survive, the noble overcome.&#34;
-The disguised Obi-Wan accompanies Cad Bane and Moralo Eval to Serenno, where they enlist in a brutal competition with other bounty hunters from around the galaxy to determine who will participate in a plot to kidnap the Chancellor.
+ 
+418 : 4 - 18
+Crisis on Naboo
+https://www.starwars.com/tv-shows/clone-wars/crisis-on-naboo-episode-guide
+ 
+419 : 4 - 19
+Massacre
+https://www.starwars.com/tv-shows/clone-wars/massacre-episode-guide
+ 
+420 : 4 - 20
+Bounty
+https://www.starwars.com/tv-shows/clone-wars/bounty-episode-guide
+ 
+421 : 4 - 21
+Brothers
+https://www.starwars.com/tv-shows/clone-wars/brothers-episode-guide
+ 
+422 : 4 - 22
+Revenge
+https://www.starwars.com/tv-shows/clone-wars/revenge-episode-guide
+ 
+502 : 5 - 2
+A War on Two Fronts
+https://www.starwars.com/tv-shows/clone-wars/a-war-on-two-fronts-episode-guide
+ 
+503 : 5 - 3
+Front Runners
+https://www.starwars.com/tv-shows/clone-wars/front-runners-episode-guide
+ 
+504 : 5 - 4
+The Soft War
+https://www.starwars.com/tv-shows/clone-wars/the-soft-war-episode-guide
+ 
+505 : 5 - 5
+Tipping Points
+https://www.starwars.com/tv-shows/clone-wars/tipping-points-episode-guide
+ 
+506 : 5 - 6
+The Gathering
+https://www.starwars.com/tv-shows/clone-wars/the-gathering-episode-guide
+ 
+507 : 5 - 7
+A Test of Strength
+https://www.starwars.com/tv-shows/clone-wars/a-test-of-strength-episode-guide
+ 
+508 : 5 - 8
+Bound for Rescue
+https://www.starwars.com/series/clone-wars/bound-for-rescue-episode-guide
+ 
+509 : 5 - 9
+A Necessary Bond
+https://www.starwars.com/series/clone-wars/a-necessary-bond-episode-guide
+ 
+510 : 5 - 10
+Secret Weapons
+https://www.starwars.com/tv-shows/clone-wars/secret-weapons-episode-guide
+ 
+511 : 5 - 11
+A Sunny Day in the Void
+https://www.starwars.com/tv-shows/clone-wars/a-sunny-day-in-the-void-episode-guide
+ 
+512 : 5 - 12
+Missing in Action
+https://www.starwars.com/tv-shows/clone-wars/missing-in-action-episode-guide
+ 
+513 : 5 - 13
+Point of No Return
+https://www.starwars.com/tv-shows/clone-wars/point-of-no-return-episode-guide
+ 
+501 : 5 - 1
+Revival
+https://www.starwars.com/tv-shows/clone-wars/revival-episode-guide
+ 
+514 : 5 - 14
+Eminence
+https://www.starwars.com/tv-shows/clone-wars/eminence-episode-guide
+ 
+515 : 5 - 15
+Shades of Reason
+https://www.starwars.com/tv-shows/clone-wars/shades-of-reason-episode-guide
+ 
+516 : 5 - 16
+The Lawless
+https://www.starwars.com/tv-shows/clone-wars/the-lawless-episode-guide
+ 
+517 : 5 - 17
+Sabotage
+https://www.starwars.com/tv-shows/clone-wars/sabotage-episode-guide
+ 
+518 : 5 - 18
+The Jedi Who Knew Too Much
+https://www.starwars.com/tv-shows/clone-wars/the-jedi-who-knew-too-much-episode-guide
+ 
+519 : 5 - 19
+To Catch a Jedi
+https://www.starwars.com/tv-shows/clone-wars/to-catch-a-jedi-episode-guide
+ 
+520 : 5 - 20
+The Wrong Jedi
+https://www.starwars.com/tv-shows/clone-wars/the-wrong-jedi-episode-guide
+ 
+601 : 6 - 1
+The Unknown
+https://www.starwars.com/tv-shows/clone-wars/the-unknown-episode-guide
+ 
+602 : 6 - 2
+Conspiracy
+https://www.starwars.com/tv-shows/clone-wars/conspiracy-episode-guide
+ 
+603 : 6 - 3
+Fugitive
+https://www.starwars.com/tv-shows/clone-wars/fugitive-episode-guide
+ 
+604 : 6 - 4
+Orders
+https://www.starwars.com/tv-shows/clone-wars/orders-episode-guide
+ 
+605 : 6 - 5
+An Old Friend
+https://www.starwars.com/tv-shows/clone-wars/an-old-friend-episode-guide
+ 
+606 : 6 - 6
+The Rise of Clovis
+https://www.starwars.com/tv-shows/clone-wars/the-rise-of-clovis-episode-guide
+ 
+607 : 6 - 7
+Crisis at the Heart
+https://www.starwars.com/tv-shows/clone-wars/crisis-at-the-heart-episode-guide
+ 
+608 : 6 - 8
+The Disappeared
+https://www.starwars.com/tv-shows/clone-wars/the-disappeared-part-i-episode-guide
+ 
+609 : 6 - 9
+The Disappeared: Pt. II
+https://www.starwars.com/tv-shows/clone-wars/the-disappeared-part-ii-episode-guide
+ 
+610 : 6 - 10
+The Lost One
+https://www.starwars.com/tv-shows/clone-wars/the-lost-one-episode-guide
+ 
+611 : 6 - 11
+Voices
+https://www.starwars.com/tv-shows/clone-wars/voices-episode-guide
+ 
+612 : 6 - 12
+Destiny
+https://www.starwars.com/tv-shows/clone-wars/destiny-episode-guide
+ 
+613 : 6 - 13
+Sacrifice
+https://www.starwars.com/tv-shows/clone-wars/sacrifice-episode-guide
+ 
+705 : 7 - 5
+Gone with a Trace
+https://www.starwars.com/series/clone-wars/gone-with-a-trace-episode-guide
+ 
+706 : 7 - 6
+Deal No Deal
+https://www.starwars.com/series/clone-wars/deal-no-deal-episode-guide
+ 
+707 : 7 - 7
+Dangerous Debt
+https://www.starwars.com/series/clone-wars/dangerous-debt-episode-guide
+ 
+708 : 7 - 8
+Together Again
+https://www.starwars.com/series/clone-wars/together-again-episode-guide
+ 
+701 : 7 - 1
+The Bad Batch
+https://www.starwars.com/series/clone-wars/the-bad-batch-episode-guide
+ 
+702 : 7 - 2
+A Distant Echo
+https://www.starwars.com/series/clone-wars/a-distant-echo-episode-guide
+ 
+703 : 7 - 3
+On the Wings of Keeradaks
+https://www.starwars.com/series/clone-wars/on-the-wings-of-keeradaks-episode-guide
+ 
+704 : 7 - 4
+Unfinished Business
+https://www.starwars.com/series/clone-wars/unfinished-business-episode-guide
+ 
+709 : 7 - 9
+Old Friends Not Forgotten
+https://www.starwars.com/series/clone-wars/old-friends-not-forgotten-episode-guide
+ 
+710 : 7 - 10
+The Phantom Apprentice
+https://www.starwars.com/series/clone-wars/the-phantom-apprentice-episode-guide
+ 
+711 : 7 - 11
+Shattered
+https://www.starwars.com/series/clone-wars/shattered-episode-guide
+ 
+712 : 7 - 12
+Victory and Death
+https://www.starwars.com/series/clone-wars/victory-and-death-episode-guide
  
 </pre>
-</div>
-</div>
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">~/anaconda3/lib/python3.7/site-packages/urllib3/connectionpool.py</span> in <span class="ansi-cyan-fg">_make_request</span><span class="ansi-blue-fg">(self, conn, method, url, timeout, chunked, **httplib_request_kw)</span>
-<span class="ansi-green-intense-fg ansi-bold">    376</span>             <span class="ansi-green-fg">try</span><span class="ansi-blue-fg">:</span>  <span class="ansi-red-fg"># Python 2.7, use buffering of HTTP responses</span>
-<span class="ansi-green-fg">--&gt; 377</span><span class="ansi-red-fg">                 </span>httplib_response <span class="ansi-blue-fg">=</span> conn<span class="ansi-blue-fg">.</span>getresponse<span class="ansi-blue-fg">(</span>buffering<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">True</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    378</span>             <span class="ansi-green-fg">except</span> TypeError<span class="ansi-blue-fg">:</span>  <span class="ansi-red-fg"># Python 3</span>
-
-<span class="ansi-red-fg">TypeError</span>: getresponse() got an unexpected keyword argument &#39;buffering&#39;
-
-During handling of the above exception, another exception occurred:
-
-<span class="ansi-red-fg">KeyboardInterrupt</span>                         Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-15-302a7ae72af5&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">     46</span>         episode_detail_page_link <span class="ansi-blue-fg">=</span> a_link<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;href&#39;</span><span class="ansi-blue-fg">]</span>
-<span class="ansi-green-intense-fg ansi-bold">     47</span> 
-<span class="ansi-green-fg">---&gt; 48</span><span class="ansi-red-fg">         </span>detail_page <span class="ansi-blue-fg">=</span> requests<span class="ansi-blue-fg">.</span>get<span class="ansi-blue-fg">(</span>episode_detail_page_link<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     49</span>         detail_soup <span class="ansi-blue-fg">=</span> BeautifulSoup<span class="ansi-blue-fg">(</span>detail_page<span class="ansi-blue-fg">.</span>content<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     50</span> 
-
-<span class="ansi-green-fg">~/anaconda3/lib/python3.7/site-packages/requests/api.py</span> in <span class="ansi-cyan-fg">get</span><span class="ansi-blue-fg">(url, params, **kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">     73</span> 
-<span class="ansi-green-intense-fg ansi-bold">     74</span>     kwargs<span class="ansi-blue-fg">.</span>setdefault<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;allow_redirects&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-green-fg">True</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">---&gt; 75</span><span class="ansi-red-fg">     </span><span class="ansi-green-fg">return</span> request<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;get&#39;</span><span class="ansi-blue-fg">,</span> url<span class="ansi-blue-fg">,</span> params<span class="ansi-blue-fg">=</span>params<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     76</span> 
-<span class="ansi-green-intense-fg ansi-bold">     77</span> 
-
-<span class="ansi-green-fg">~/anaconda3/lib/python3.7/site-packages/requests/api.py</span> in <span class="ansi-cyan-fg">request</span><span class="ansi-blue-fg">(method, url, **kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">     58</span>     <span class="ansi-red-fg"># cases, and look like a memory leak in others.</span>
-<span class="ansi-green-intense-fg ansi-bold">     59</span>     <span class="ansi-green-fg">with</span> sessions<span class="ansi-blue-fg">.</span>Session<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span> <span class="ansi-green-fg">as</span> session<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">---&gt; 60</span><span class="ansi-red-fg">         </span><span class="ansi-green-fg">return</span> session<span class="ansi-blue-fg">.</span>request<span class="ansi-blue-fg">(</span>method<span class="ansi-blue-fg">=</span>method<span class="ansi-blue-fg">,</span> url<span class="ansi-blue-fg">=</span>url<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     61</span> 
-<span class="ansi-green-intense-fg ansi-bold">     62</span> 
-
-<span class="ansi-green-fg">~/anaconda3/lib/python3.7/site-packages/requests/sessions.py</span> in <span class="ansi-cyan-fg">request</span><span class="ansi-blue-fg">(self, method, url, params, data, headers, cookies, files, auth, timeout, allow_redirects, proxies, hooks, stream, verify, cert, json)</span>
-<span class="ansi-green-intense-fg ansi-bold">    531</span>         }
-<span class="ansi-green-intense-fg ansi-bold">    532</span>         send_kwargs<span class="ansi-blue-fg">.</span>update<span class="ansi-blue-fg">(</span>settings<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">--&gt; 533</span><span class="ansi-red-fg">         </span>resp <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>send<span class="ansi-blue-fg">(</span>prep<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>send_kwargs<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    534</span> 
-<span class="ansi-green-intense-fg ansi-bold">    535</span>         <span class="ansi-green-fg">return</span> resp
-
-<span class="ansi-green-fg">~/anaconda3/lib/python3.7/site-packages/requests/sessions.py</span> in <span class="ansi-cyan-fg">send</span><span class="ansi-blue-fg">(self, request, **kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">    666</span> 
-<span class="ansi-green-intense-fg ansi-bold">    667</span>         <span class="ansi-red-fg"># Resolve redirects if allowed.</span>
-<span class="ansi-green-fg">--&gt; 668</span><span class="ansi-red-fg">         </span>history <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">[</span>resp <span class="ansi-green-fg">for</span> resp <span class="ansi-green-fg">in</span> gen<span class="ansi-blue-fg">]</span> <span class="ansi-green-fg">if</span> allow_redirects <span class="ansi-green-fg">else</span> <span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">]</span>
-<span class="ansi-green-intense-fg ansi-bold">    669</span> 
-<span class="ansi-green-intense-fg ansi-bold">    670</span>         <span class="ansi-red-fg"># Shuffle things around if there&#39;s history.</span>
-
-<span class="ansi-green-fg">~/anaconda3/lib/python3.7/site-packages/requests/sessions.py</span> in <span class="ansi-cyan-fg">&lt;listcomp&gt;</span><span class="ansi-blue-fg">(.0)</span>
-<span class="ansi-green-intense-fg ansi-bold">    666</span> 
-<span class="ansi-green-intense-fg ansi-bold">    667</span>         <span class="ansi-red-fg"># Resolve redirects if allowed.</span>
-<span class="ansi-green-fg">--&gt; 668</span><span class="ansi-red-fg">         </span>history <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">[</span>resp <span class="ansi-green-fg">for</span> resp <span class="ansi-green-fg">in</span> gen<span class="ansi-blue-fg">]</span> <span class="ansi-green-fg">if</span> allow_redirects <span class="ansi-green-fg">else</span> <span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">]</span>
-<span class="ansi-green-intense-fg ansi-bold">    669</span> 
-<span class="ansi-green-intense-fg ansi-bold">    670</span>         <span class="ansi-red-fg"># Shuffle things around if there&#39;s history.</span>
-
-<span class="ansi-green-fg">~/anaconda3/lib/python3.7/site-packages/requests/sessions.py</span> in <span class="ansi-cyan-fg">resolve_redirects</span><span class="ansi-blue-fg">(self, resp, req, stream, timeout, verify, cert, proxies, yield_requests, **adapter_kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">    245</span>                     proxies<span class="ansi-blue-fg">=</span>proxies<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">    246</span>                     allow_redirects<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">False</span><span class="ansi-blue-fg">,</span>
-<span class="ansi-green-fg">--&gt; 247</span><span class="ansi-red-fg">                     </span><span class="ansi-blue-fg">**</span>adapter_kwargs
-<span class="ansi-green-intense-fg ansi-bold">    248</span>                 )
-<span class="ansi-green-intense-fg ansi-bold">    249</span> 
-
-<span class="ansi-green-fg">~/anaconda3/lib/python3.7/site-packages/requests/sessions.py</span> in <span class="ansi-cyan-fg">send</span><span class="ansi-blue-fg">(self, request, **kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">    644</span> 
-<span class="ansi-green-intense-fg ansi-bold">    645</span>         <span class="ansi-red-fg"># Send the request</span>
-<span class="ansi-green-fg">--&gt; 646</span><span class="ansi-red-fg">         </span>r <span class="ansi-blue-fg">=</span> adapter<span class="ansi-blue-fg">.</span>send<span class="ansi-blue-fg">(</span>request<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    647</span> 
-<span class="ansi-green-intense-fg ansi-bold">    648</span>         <span class="ansi-red-fg"># Total elapsed time of the request (approximately)</span>
-
-<span class="ansi-green-fg">~/anaconda3/lib/python3.7/site-packages/requests/adapters.py</span> in <span class="ansi-cyan-fg">send</span><span class="ansi-blue-fg">(self, request, stream, timeout, verify, cert, proxies)</span>
-<span class="ansi-green-intense-fg ansi-bold">    447</span>                     decode_content<span class="ansi-blue-fg">=</span><span class="ansi-green-fg">False</span><span class="ansi-blue-fg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">    448</span>                     retries<span class="ansi-blue-fg">=</span>self<span class="ansi-blue-fg">.</span>max_retries<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-fg">--&gt; 449</span><span class="ansi-red-fg">                     </span>timeout<span class="ansi-blue-fg">=</span>timeout
-<span class="ansi-green-intense-fg ansi-bold">    450</span>                 )
-<span class="ansi-green-intense-fg ansi-bold">    451</span> 
-
-<span class="ansi-green-fg">~/anaconda3/lib/python3.7/site-packages/urllib3/connectionpool.py</span> in <span class="ansi-cyan-fg">urlopen</span><span class="ansi-blue-fg">(self, method, url, body, headers, retries, redirect, assert_same_host, timeout, pool_timeout, release_conn, chunked, body_pos, **response_kw)</span>
-<span class="ansi-green-intense-fg ansi-bold">    598</span>                                                   timeout<span class="ansi-blue-fg">=</span>timeout_obj<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">    599</span>                                                   body<span class="ansi-blue-fg">=</span>body<span class="ansi-blue-fg">,</span> headers<span class="ansi-blue-fg">=</span>headers<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-fg">--&gt; 600</span><span class="ansi-red-fg">                                                   chunked=chunked)
-</span><span class="ansi-green-intense-fg ansi-bold">    601</span> 
-<span class="ansi-green-intense-fg ansi-bold">    602</span>             <span class="ansi-red-fg"># If we&#39;re going to release the connection in ``finally:``, then</span>
-
-<span class="ansi-green-fg">~/anaconda3/lib/python3.7/site-packages/urllib3/connectionpool.py</span> in <span class="ansi-cyan-fg">_make_request</span><span class="ansi-blue-fg">(self, conn, method, url, timeout, chunked, **httplib_request_kw)</span>
-<span class="ansi-green-intense-fg ansi-bold">    378</span>             <span class="ansi-green-fg">except</span> TypeError<span class="ansi-blue-fg">:</span>  <span class="ansi-red-fg"># Python 3</span>
-<span class="ansi-green-intense-fg ansi-bold">    379</span>                 <span class="ansi-green-fg">try</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">--&gt; 380</span><span class="ansi-red-fg">                     </span>httplib_response <span class="ansi-blue-fg">=</span> conn<span class="ansi-blue-fg">.</span>getresponse<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    381</span>                 <span class="ansi-green-fg">except</span> Exception <span class="ansi-green-fg">as</span> e<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    382</span>                     <span class="ansi-red-fg"># Remove the TypeError from the exception chain in Python 3;</span>
-
-<span class="ansi-green-fg">~/anaconda3/lib/python3.7/http/client.py</span> in <span class="ansi-cyan-fg">getresponse</span><span class="ansi-blue-fg">(self)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1319</span>         <span class="ansi-green-fg">try</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">   1320</span>             <span class="ansi-green-fg">try</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">-&gt; 1321</span><span class="ansi-red-fg">                 </span>response<span class="ansi-blue-fg">.</span>begin<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1322</span>             <span class="ansi-green-fg">except</span> ConnectionError<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">   1323</span>                 self<span class="ansi-blue-fg">.</span>close<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
-
-<span class="ansi-green-fg">~/anaconda3/lib/python3.7/http/client.py</span> in <span class="ansi-cyan-fg">begin</span><span class="ansi-blue-fg">(self)</span>
-<span class="ansi-green-intense-fg ansi-bold">    294</span>         <span class="ansi-red-fg"># read until we get a non-100 response</span>
-<span class="ansi-green-intense-fg ansi-bold">    295</span>         <span class="ansi-green-fg">while</span> <span class="ansi-green-fg">True</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">--&gt; 296</span><span class="ansi-red-fg">             </span>version<span class="ansi-blue-fg">,</span> status<span class="ansi-blue-fg">,</span> reason <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>_read_status<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    297</span>             <span class="ansi-green-fg">if</span> status <span class="ansi-blue-fg">!=</span> CONTINUE<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    298</span>                 <span class="ansi-green-fg">break</span>
-
-<span class="ansi-green-fg">~/anaconda3/lib/python3.7/http/client.py</span> in <span class="ansi-cyan-fg">_read_status</span><span class="ansi-blue-fg">(self)</span>
-<span class="ansi-green-intense-fg ansi-bold">    255</span> 
-<span class="ansi-green-intense-fg ansi-bold">    256</span>     <span class="ansi-green-fg">def</span> _read_status<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">--&gt; 257</span><span class="ansi-red-fg">         </span>line <span class="ansi-blue-fg">=</span> str<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">.</span>fp<span class="ansi-blue-fg">.</span>readline<span class="ansi-blue-fg">(</span>_MAXLINE <span class="ansi-blue-fg">+</span> <span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#34;iso-8859-1&#34;</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    258</span>         <span class="ansi-green-fg">if</span> len<span class="ansi-blue-fg">(</span>line<span class="ansi-blue-fg">)</span> <span class="ansi-blue-fg">&gt;</span> _MAXLINE<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    259</span>             <span class="ansi-green-fg">raise</span> LineTooLong<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#34;status line&#34;</span><span class="ansi-blue-fg">)</span>
-
-<span class="ansi-green-fg">~/anaconda3/lib/python3.7/socket.py</span> in <span class="ansi-cyan-fg">readinto</span><span class="ansi-blue-fg">(self, b)</span>
-<span class="ansi-green-intense-fg ansi-bold">    587</span>         <span class="ansi-green-fg">while</span> <span class="ansi-green-fg">True</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    588</span>             <span class="ansi-green-fg">try</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">--&gt; 589</span><span class="ansi-red-fg">                 </span><span class="ansi-green-fg">return</span> self<span class="ansi-blue-fg">.</span>_sock<span class="ansi-blue-fg">.</span>recv_into<span class="ansi-blue-fg">(</span>b<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    590</span>             <span class="ansi-green-fg">except</span> timeout<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    591</span>                 self<span class="ansi-blue-fg">.</span>_timeout_occurred <span class="ansi-blue-fg">=</span> <span class="ansi-green-fg">True</span>
-
-<span class="ansi-green-fg">~/anaconda3/lib/python3.7/site-packages/urllib3/contrib/pyopenssl.py</span> in <span class="ansi-cyan-fg">recv_into</span><span class="ansi-blue-fg">(self, *args, **kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">    292</span>     <span class="ansi-green-fg">def</span> recv_into<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    293</span>         <span class="ansi-green-fg">try</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">--&gt; 294</span><span class="ansi-red-fg">             </span><span class="ansi-green-fg">return</span> self<span class="ansi-blue-fg">.</span>connection<span class="ansi-blue-fg">.</span>recv_into<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">    295</span>         <span class="ansi-green-fg">except</span> OpenSSL<span class="ansi-blue-fg">.</span>SSL<span class="ansi-blue-fg">.</span>SysCallError <span class="ansi-green-fg">as</span> e<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">    296</span>             <span class="ansi-green-fg">if</span> self<span class="ansi-blue-fg">.</span>suppress_ragged_eofs <span class="ansi-green-fg">and</span> e<span class="ansi-blue-fg">.</span>args <span class="ansi-blue-fg">==</span> <span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">-</span><span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;Unexpected EOF&#39;</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-
-<span class="ansi-green-fg">~/anaconda3/lib/python3.7/site-packages/OpenSSL/SSL.py</span> in <span class="ansi-cyan-fg">recv_into</span><span class="ansi-blue-fg">(self, buffer, nbytes, flags)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1819</span>             result <span class="ansi-blue-fg">=</span> _lib<span class="ansi-blue-fg">.</span>SSL_peek<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">.</span>_ssl<span class="ansi-blue-fg">,</span> buf<span class="ansi-blue-fg">,</span> nbytes<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1820</span>         <span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">-&gt; 1821</span><span class="ansi-red-fg">             </span>result <span class="ansi-blue-fg">=</span> _lib<span class="ansi-blue-fg">.</span>SSL_read<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">.</span>_ssl<span class="ansi-blue-fg">,</span> buf<span class="ansi-blue-fg">,</span> nbytes<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1822</span>         self<span class="ansi-blue-fg">.</span>_raise_ssl_error<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">.</span>_ssl<span class="ansi-blue-fg">,</span> result<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1823</span> 
-
-<span class="ansi-red-fg">KeyboardInterrupt</span>: </pre>
 </div>
 </div>
 
@@ -13938,7 +13800,7 @@ During handling of the above exception, another exception occurred:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -13957,7 +13819,7 @@ During handling of the above exception, another exception occurred:
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[12]:</div>
+    <div class="prompt output_prompt">Out[27]:</div>
 
 
 
@@ -13980,10 +13842,206 @@ During handling of the above exception, another exception occurred:
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>ep_number</th>
+      <th>episode_code</th>
+      <th>season</th>
+      <th>episode_number</th>
       <th>episode_name</th>
       <th>episode_detail_page_link</th>
-      <th>start_quote</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>216</td>
+      <td>2</td>
+      <td>16</td>
+      <td>Cat and Mouse</td>
+      <td>https://www.starwars.com/tv-shows/clone-wars/c...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>116</td>
+      <td>1</td>
+      <td>16</td>
+      <td>Hidden Enemy</td>
+      <td>https://www.starwars.com/tv-shows/clone-wars/t...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>301</td>
+      <td>3</td>
+      <td>1</td>
+      <td>Clone Cadets</td>
+      <td>https://www.starwars.com/tv-shows/clone-wars/c...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>303</td>
+      <td>3</td>
+      <td>3</td>
+      <td>Supply Lines</td>
+      <td>https://www.starwars.com/tv-shows/clone-wars/s...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>101</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Ambush</td>
+      <td>https://www.starwars.com/tv-shows/clone-wars/a...</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">clean</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+    <span class="k">if</span><span class="p">(</span><span class="ow">not</span> <span class="n">text</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">text</span>
+
+    <span class="n">cleaned</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\r</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">cleaned</span>
+    
+
+<span class="k">def</span> <span class="nf">parse_detailed_info_page</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+    
+    <span class="c1">#     request the page</span>
+    <span class="n">detail_page</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">detail_soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">detail_page</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+
+    <span class="c1">#description div has a quote and a description.</span>
+    <span class="n">description_div</span> <span class="o">=</span> <span class="n">detail_soup</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s2">&quot;desc&quot;</span><span class="p">)</span>
+        
+    <span class="n">start_quote_span</span> <span class="o">=</span> <span class="n">description_div</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;span&#39;</span><span class="p">,</span> <span class="s1">&#39;quote&#39;</span><span class="p">)</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">start_quote_span</span><span class="p">):</span>
+        <span class="n">start_quote</span> <span class="o">=</span> <span class="n">start_quote_span</span><span class="o">.</span><span class="n">text</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">start_quote</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        
+    <span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    
+<span class="c1">#   first child is empty</span>
+<span class="c1">#   2nd child is the quote</span>
+<span class="c1">#   3rd child (index 2) is the description text. but it has some leading white-space.</span>
+    <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">child</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">description_div</span><span class="o">.</span><span class="n">children</span><span class="p">):</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">index</span><span class="o">==</span><span class="mi">2</span><span class="p">):</span>
+            <span class="n">description</span> <span class="o">=</span> <span class="n">child</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> 
+            
+    <span class="k">if</span><span class="p">((</span><span class="ow">not</span> <span class="n">start_quote</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="ow">not</span> <span class="n">description</span><span class="p">)):</span>
+        <span class="n">description</span> <span class="o">=</span> <span class="n">description_div</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+       
+    <span class="c1">#print((start_quote, str(description)))</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">clean</span><span class="p">(</span><span class="n">start_quote</span><span class="p">),</span> <span class="n">clean</span><span class="p">(</span><span class="n">description</span><span class="p">))</span>
+
+
+<span class="c1"># Test the function works on a few examples</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;episode_detail_page_link&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">parse_detailed_info_page</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[5]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>117    (&#34;What is lost is often found.&#34;, A Jedi missio...
+34     (&#34;Attachment is not compassion.&#34;, Medical supp...
+99     (&#34;You must trust in others or success is impos...
+Name: episode_detail_page_link, dtype: object</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Multi-thread it to apply it quickly across the dataframe and run requests in parallel.</span>
+<span class="kn">import</span> <span class="nn">multiprocessing</span> <span class="k">as</span> <span class="nn">mp</span>
+<span class="k">with</span> <span class="n">mp</span><span class="o">.</span><span class="n">Pool</span><span class="p">(</span><span class="n">mp</span><span class="o">.</span><span class="n">cpu_count</span><span class="p">())</span> <span class="k">as</span> <span class="n">pool</span><span class="p">:</span>
+    <span class="n">quotes_and_description</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">parse_detailed_info_page</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;episode_detail_page_link&quot;</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df2</span> <span class="o">=</span> <span class="n">df</span>
+<span class="n">df2</span><span class="p">[</span><span class="s1">&#39;quote&#39;</span><span class="p">],</span> <span class="n">df2</span><span class="p">[</span><span class="s1">&#39;description&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">quotes_and_description</span><span class="p">)</span>
+<span class="n">df2</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[28]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>episode_code</th>
+      <th>season</th>
+      <th>episode_number</th>
+      <th>episode_name</th>
+      <th>episode_detail_page_link</th>
+      <th>quote</th>
       <th>description</th>
     </tr>
   </thead>
@@ -13991,6 +14049,8 @@ During handling of the above exception, another exception occurred:
     <tr>
       <th>0</th>
       <td>216</td>
+      <td>2</td>
+      <td>16</td>
       <td>Cat and Mouse</td>
       <td>https://www.starwars.com/tv-shows/clone-wars/c...</td>
       <td>"A wise leader knows when to follow"</td>
@@ -13999,6 +14059,8 @@ During handling of the above exception, another exception occurred:
     <tr>
       <th>1</th>
       <td>116</td>
+      <td>1</td>
+      <td>16</td>
       <td>Hidden Enemy</td>
       <td>https://www.starwars.com/tv-shows/clone-wars/t...</td>
       <td>"Truth enlightens the mind, but won't always b...</td>
@@ -14007,6 +14069,8 @@ During handling of the above exception, another exception occurred:
     <tr>
       <th>2</th>
       <td>301</td>
+      <td>3</td>
+      <td>1</td>
       <td>Clone Cadets</td>
       <td>https://www.starwars.com/tv-shows/clone-wars/c...</td>
       <td>"Brothers in arms are brothers for life."</td>
@@ -14015,6 +14079,8 @@ During handling of the above exception, another exception occurred:
     <tr>
       <th>3</th>
       <td>303</td>
+      <td>3</td>
+      <td>3</td>
       <td>Supply Lines</td>
       <td>https://www.starwars.com/tv-shows/clone-wars/s...</td>
       <td>"Where there's a will, there's a way."</td>
@@ -14023,6 +14089,8 @@ During handling of the above exception, another exception occurred:
     <tr>
       <th>4</th>
       <td>101</td>
+      <td>1</td>
+      <td>1</td>
       <td>Ambush</td>
       <td>https://www.starwars.com/tv-shows/clone-wars/a...</td>
       <td>"Great leaders inspire greatness in others."</td>
@@ -14041,10 +14109,711 @@ During handling of the above exception, another exception occurred:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[66]:</div>
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">df2</span><span class="p">)</span>
+<span class="n">df2</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;clone_wars_episode_guide.csv&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>episode_code</th>
+      <th>season</th>
+      <th>episode_number</th>
+      <th>episode_name</th>
+      <th>episode_detail_page_link</th>
+      <th>quote</th>
+      <th>description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>216</td>
+      <td>2</td>
+      <td>16</td>
+      <td>Cat and Mouse</td>
+      <td>https://www.starwars.com/tv-shows/clone-wars/c...</td>
+      <td>"A wise leader knows when to follow"</td>
+      <td>A Separatist blockade surrounds Christophsis. ...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>116</td>
+      <td>1</td>
+      <td>16</td>
+      <td>Hidden Enemy</td>
+      <td>https://www.starwars.com/tv-shows/clone-wars/t...</td>
+      <td>"Truth enlightens the mind, but won't always b...</td>
+      <td>Anakin Skywalker and Obi-Wan Kenobi lead Repub...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>301</td>
+      <td>3</td>
+      <td>1</td>
+      <td>Clone Cadets</td>
+      <td>https://www.starwars.com/tv-shows/clone-wars/c...</td>
+      <td>"Brothers in arms are brothers for life."</td>
+      <td>Five headstrong clones struggle to complete th...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>303</td>
+      <td>3</td>
+      <td>3</td>
+      <td>Supply Lines</td>
+      <td>https://www.starwars.com/tv-shows/clone-wars/s...</td>
+      <td>"Where there's a will, there's a way."</td>
+      <td>Ryloth is under siege. Trapped on the surface,...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>101</td>
+      <td>1</td>
+      <td>1</td>
+      <td>Ambush</td>
+      <td>https://www.starwars.com/tv-shows/clone-wars/a...</td>
+      <td>"Great leaders inspire greatness in others."</td>
+      <td>Jedi Master Yoda and three clone troopers -- J...</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>102</td>
+      <td>1</td>
+      <td>2</td>
+      <td>Rising Malevolence</td>
+      <td>https://www.starwars.com/tv-shows/clone-wars/r...</td>
+      <td>"Belief is not a matter of choice, but of conv...</td>
+      <td>An attack by a devastating new Separatist weap...</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>103</td>
+      <td>1</td>
+      <td>3</td>
+      <td>Shadow of Malevolence</td>
+      <td>https://www.starwars.com/tv-shows/clone-wars/s...</td>
+      <td>"Easy is the path to wisdom for those not blin...</td>
+      <td>With the help of his Padawan Ahsoka and Jedi M...</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>104</td>
+      <td>1</td>
+      <td>4</td>
+      <td>Destroy Malevolence</td>
+      <td>https://www.starwars.com/tv-shows/clone-wars/d...</td>
+      <td>"A plan is only as good as those who see it th...</td>
+      <td>Padmé Amidala and C-3PO are taken hostage by G...</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>105</td>
+      <td>1</td>
+      <td>5</td>
+      <td>Rookies</td>
+      <td>https://www.starwars.com/tv-shows/clone-wars/r...</td>
+      <td>"The best confidence builder is experience."</td>
+      <td>Alone on a distant outpost, clone officers Rex...</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>106</td>
+      <td>1</td>
+      <td>6</td>
+      <td>Downfall of a Droid</td>
+      <td>https://www.starwars.com/tv-shows/clone-wars/d...</td>
+      <td>"Trust in your friends, and they'll have reaso...</td>
+      <td>R2-D2 is lost during a fierce space battle -- ...</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>107</td>
+      <td>1</td>
+      <td>7</td>
+      <td>Duel of the Droids</td>
+      <td>https://www.starwars.com/tv-shows/clone-wars/d...</td>
+      <td>"You hold onto friends by keeping your heart a...</td>
+      <td>Anakin, Ahsoka and replacement droid R3-S6 emb...</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>108</td>
+      <td>1</td>
+      <td>8</td>
+      <td>Bombad Jedi</td>
+      <td>https://www.starwars.com/tv-shows/clone-wars/b...</td>
+      <td>"Heroes are made by the times."</td>
+      <td>On a diplomatic mission to the planet Rodia, P...</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>109</td>
+      <td>1</td>
+      <td>9</td>
+      <td>Cloak of Darkness</td>
+      <td>https://www.starwars.com/tv-shows/clone-wars/c...</td>
+      <td>"Ignore your instincts at your peril."</td>
+      <td>Ahsoka and Jedi Master Luminara escort the cap...</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>110</td>
+      <td>1</td>
+      <td>10</td>
+      <td>Lair of Grievous</td>
+      <td>https://www.starwars.com/tv-shows/clone-wars/l...</td>
+      <td>"Most powerful is he who controls his own power."</td>
+      <td>Jedi Master Kit Fisto and his former Padawan, ...</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>111</td>
+      <td>1</td>
+      <td>11</td>
+      <td>Dooku Captured</td>
+      <td>https://www.starwars.com/tv-shows/clone-wars/d...</td>
+      <td>"The winding path to peace is always a worthy ...</td>
+      <td>During their own attempt to kidnap Count Dooku...</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>112</td>
+      <td>1</td>
+      <td>12</td>
+      <td>The Gungan General</td>
+      <td>https://www.starwars.com/tv-shows/clone-wars/t...</td>
+      <td>"Fail with honor rather than succeed by fraud."</td>
+      <td>Anakin and Obi-Wan have been duped and are bei...</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>113</td>
+      <td>1</td>
+      <td>13</td>
+      <td>Jedi Crash</td>
+      <td>https://www.starwars.com/tv-shows/clone-wars/j...</td>
+      <td>"Greed and fear of loss are the roots that lea...</td>
+      <td>Anakin and Ahsoka arrive at a pitched sky batt...</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>114</td>
+      <td>1</td>
+      <td>14</td>
+      <td>Defenders of Peace</td>
+      <td>https://www.starwars.com/tv-shows/clone-wars/d...</td>
+      <td>"When surrounded by war, one must eventually c...</td>
+      <td>The leader of the Lurmen, Tee Watt Kaa, refuse...</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>115</td>
+      <td>1</td>
+      <td>15</td>
+      <td>Trespass</td>
+      <td>https://www.starwars.com/tv-shows/clone-wars/t...</td>
+      <td>"Arrogance diminishes wisdom."</td>
+      <td>Arriving on the desolate ice world of Orto Plu...</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>117</td>
+      <td>1</td>
+      <td>17</td>
+      <td>Blue Shadow Virus</td>
+      <td>https://www.starwars.com/tv-shows/clone-wars/b...</td>
+      <td>"Fear is a disease; hope is its only cure."</td>
+      <td>The Republic discovers a Separatist bio-weapon...</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>118</td>
+      <td>1</td>
+      <td>18</td>
+      <td>Mystery of a Thousand Moons</td>
+      <td>https://www.starwars.com/tv-shows/clone-wars/m...</td>
+      <td>"A single chance is a galaxy of hope."</td>
+      <td>Even though the lab has been shut down, Dr. Vi...</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>119</td>
+      <td>1</td>
+      <td>19</td>
+      <td>Storm over Ryloth</td>
+      <td>https://www.starwars.com/tv-shows/clone-wars/s...</td>
+      <td>"It is a rough road that leads to the heights ...</td>
+      <td>Ryloth, home world of the Twi'lek people, has ...</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>120</td>
+      <td>1</td>
+      <td>20</td>
+      <td>Innocents of Ryloth</td>
+      <td>https://www.starwars.com/tv-shows/clone-wars/i...</td>
+      <td>"The costs of war can never be truly accounted...</td>
+      <td>With the space blockade around Ryloth destroye...</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>121</td>
+      <td>1</td>
+      <td>21</td>
+      <td>Liberty on Ryloth</td>
+      <td>https://www.starwars.com/tv-shows/clone-wars/l...</td>
+      <td>"Compromise is a virtue to be cultivated, not ...</td>
+      <td>The battle for the Twi'lek homeworld of Ryloth...</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>201</td>
+      <td>2</td>
+      <td>1</td>
+      <td>Holocron Heist</td>
+      <td>https://www.starwars.com/tv-shows/clone-wars/h...</td>
+      <td>"A lesson learned is a lesson earned."</td>
+      <td>Cad Bane has been hired by Darth Sidious to st...</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>202</td>
+      <td>2</td>
+      <td>2</td>
+      <td>Cargo of Doom</td>
+      <td>https://www.starwars.com/tv-shows/clone-wars/c...</td>
+      <td>"Overconfidence is the most dangerous form of ...</td>
+      <td>Anakin and Ahsoka travel to the planet Devaron...</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>203</td>
+      <td>2</td>
+      <td>3</td>
+      <td>Children of the Force</td>
+      <td>https://www.starwars.com/tv-shows/clone-wars/c...</td>
+      <td></td>
+      <td>"The first step to correcting a mistake is pat...</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>217</td>
+      <td>2</td>
+      <td>17</td>
+      <td>Bounty Hunters</td>
+      <td>https://www.starwars.com/tv-shows/clone-wars/b...</td>
+      <td>"Courage makes heroes, but trust builds friend...</td>
+      <td>Anakin, Obi-Wan, and Ahsoka crash on Felucia a...</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>218</td>
+      <td>2</td>
+      <td>18</td>
+      <td>The Zillo Beast</td>
+      <td>https://www.starwars.com/tv-shows/clone-wars/t...</td>
+      <td>"Choose what is right, not what is easy."</td>
+      <td>Desperate to turn the tide of a fierce battle ...</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>219</td>
+      <td>2</td>
+      <td>19</td>
+      <td>The Zillo Beast Strikes Back</td>
+      <td>https://www.starwars.com/tv-shows/clone-wars/t...</td>
+      <td>"The most dangerous beast is the beast within."</td>
+      <td>Per Palpatine's order, Republic forces transpo...</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>103</th>
+      <td>516</td>
+      <td>5</td>
+      <td>16</td>
+      <td>The Lawless</td>
+      <td>https://www.starwars.com/tv-shows/clone-wars/t...</td>
+      <td>"Morality separates heroes from villains."</td>
+      <td>Using Duchess Satine as bait, Darth Maul lures...</td>
+    </tr>
+    <tr>
+      <th>104</th>
+      <td>517</td>
+      <td>5</td>
+      <td>17</td>
+      <td>Sabotage</td>
+      <td>https://www.starwars.com/tv-shows/clone-wars/s...</td>
+      <td>"Sometimes even the smallest doubt can shake t...</td>
+      <td>Anakin and Ahsoka investigate a deadly bombing...</td>
+    </tr>
+    <tr>
+      <th>105</th>
+      <td>518</td>
+      <td>5</td>
+      <td>18</td>
+      <td>The Jedi Who Knew Too Much</td>
+      <td>https://www.starwars.com/tv-shows/clone-wars/t...</td>
+      <td>"Courage begins by trusting oneself."</td>
+      <td>As the Republic military takes over the Temple...</td>
+    </tr>
+    <tr>
+      <th>106</th>
+      <td>519</td>
+      <td>5</td>
+      <td>19</td>
+      <td>To Catch a Jedi</td>
+      <td>https://www.starwars.com/tv-shows/clone-wars/t...</td>
+      <td>"Never become desperate enough to trust the un...</td>
+      <td>The fugitive Ahsoka escapes to the criminal de...</td>
+    </tr>
+    <tr>
+      <th>107</th>
+      <td>520</td>
+      <td>5</td>
+      <td>20</td>
+      <td>The Wrong Jedi</td>
+      <td>https://www.starwars.com/tv-shows/clone-wars/t...</td>
+      <td>"Never give up hope, no matter how dark things...</td>
+      <td>On trial for murder, Ahsoka faces her greatest...</td>
+    </tr>
+    <tr>
+      <th>108</th>
+      <td>601</td>
+      <td>6</td>
+      <td>1</td>
+      <td>The Unknown</td>
+      <td>https://www.starwars.com/tv-shows/clone-wars/t...</td>
+      <td>"The truth about yourself is the hardest to ac...</td>
+      <td>Clone trooper Tup succumbs to a mysterious men...</td>
+    </tr>
+    <tr>
+      <th>109</th>
+      <td>602</td>
+      <td>6</td>
+      <td>2</td>
+      <td>Conspiracy</td>
+      <td>https://www.starwars.com/tv-shows/clone-wars/c...</td>
+      <td>"The wise benefit from a second opinion."</td>
+      <td>In the sterile laboratories of Kamino, the ail...</td>
+    </tr>
+    <tr>
+      <th>110</th>
+      <td>603</td>
+      <td>6</td>
+      <td>3</td>
+      <td>Fugitive</td>
+      <td>https://www.starwars.com/tv-shows/clone-wars/f...</td>
+      <td>"When in doubt, go to the source."</td>
+      <td>The body of clone trooper Tup is scheduled for...</td>
+    </tr>
+    <tr>
+      <th>111</th>
+      <td>604</td>
+      <td>6</td>
+      <td>4</td>
+      <td>Orders</td>
+      <td>https://www.starwars.com/tv-shows/clone-wars/o...</td>
+      <td>"The popular belief isn't always the correct o...</td>
+      <td>Fives continues to push for answers regarding ...</td>
+    </tr>
+    <tr>
+      <th>112</th>
+      <td>605</td>
+      <td>6</td>
+      <td>5</td>
+      <td>An Old Friend</td>
+      <td>https://www.starwars.com/tv-shows/clone-wars/a...</td>
+      <td>"To love is to trust. To trust is to believe."</td>
+      <td>While on Scipio to fund a mercy mission, Padmé...</td>
+    </tr>
+    <tr>
+      <th>113</th>
+      <td>606</td>
+      <td>6</td>
+      <td>6</td>
+      <td>The Rise of Clovis</td>
+      <td>https://www.starwars.com/tv-shows/clone-wars/t...</td>
+      <td>"Jealousy is the path to chaos."</td>
+      <td>Back on Coruscant, Clovis -- known traitor of ...</td>
+    </tr>
+    <tr>
+      <th>114</th>
+      <td>607</td>
+      <td>6</td>
+      <td>7</td>
+      <td>Crisis at the Heart</td>
+      <td>https://www.starwars.com/tv-shows/clone-wars/c...</td>
+      <td>"Deceit is the weapon of greed."</td>
+      <td>Rush Clovis' deal with the Separatists backfir...</td>
+    </tr>
+    <tr>
+      <th>115</th>
+      <td>608</td>
+      <td>6</td>
+      <td>8</td>
+      <td>The Disappeared</td>
+      <td>https://www.starwars.com/tv-shows/clone-wars/t...</td>
+      <td>"Without darkness there can be no light."</td>
+      <td>The peaceful world of Bardotta and its mystic ...</td>
+    </tr>
+    <tr>
+      <th>116</th>
+      <td>609</td>
+      <td>6</td>
+      <td>9</td>
+      <td>The Disappeared: Pt. II</td>
+      <td>https://www.starwars.com/tv-shows/clone-wars/t...</td>
+      <td>"Wisdom is born in fools as well as wise men."</td>
+      <td>Jar Jar Binks' beloved Queen Julia of the plan...</td>
+    </tr>
+    <tr>
+      <th>117</th>
+      <td>610</td>
+      <td>6</td>
+      <td>10</td>
+      <td>The Lost One</td>
+      <td>https://www.starwars.com/tv-shows/clone-wars/t...</td>
+      <td>"What is lost is often found."</td>
+      <td>A Jedi mission finds a lightsaber belonging to...</td>
+    </tr>
+    <tr>
+      <th>118</th>
+      <td>611</td>
+      <td>6</td>
+      <td>11</td>
+      <td>Voices</td>
+      <td>https://www.starwars.com/tv-shows/clone-wars/v...</td>
+      <td>"Madness can sometimes be the path to truth."</td>
+      <td>Yoda is deeply unsettled when he hears somethi...</td>
+    </tr>
+    <tr>
+      <th>119</th>
+      <td>612</td>
+      <td>6</td>
+      <td>12</td>
+      <td>Destiny</td>
+      <td>https://www.starwars.com/tv-shows/clone-wars/d...</td>
+      <td>"Death is just the beginning."</td>
+      <td>Letting the Force guide him, Yoda voyages into...</td>
+    </tr>
+    <tr>
+      <th>120</th>
+      <td>613</td>
+      <td>6</td>
+      <td>13</td>
+      <td>Sacrifice</td>
+      <td>https://www.starwars.com/tv-shows/clone-wars/s...</td>
+      <td>"Facing all that you fear will free you from y...</td>
+      <td>After many grueling trials, Yoda next travels ...</td>
+    </tr>
+    <tr>
+      <th>121</th>
+      <td>705</td>
+      <td>7</td>
+      <td>5</td>
+      <td>Gone with a Trace</td>
+      <td>https://www.starwars.com/series/clone-wars/gon...</td>
+      <td>"If there is no path before you, create your o...</td>
+      <td>Ahsoka Tano, no longer part of the Jedi Order,...</td>
+    </tr>
+    <tr>
+      <th>122</th>
+      <td>706</td>
+      <td>7</td>
+      <td>6</td>
+      <td>Deal No Deal</td>
+      <td>https://www.starwars.com/series/clone-wars/dea...</td>
+      <td>"Mistakes are valuable lessons often learned t...</td>
+      <td>Rafa lands a dangerous job running spice — and...</td>
+    </tr>
+    <tr>
+      <th>123</th>
+      <td>707</td>
+      <td>7</td>
+      <td>7</td>
+      <td>Dangerous Debt</td>
+      <td>https://www.starwars.com/series/clone-wars/dan...</td>
+      <td>"Who you were does not have to define who you ...</td>
+      <td>Captured by the Pyke Syndicate, Ahsoka and the...</td>
+    </tr>
+    <tr>
+      <th>124</th>
+      <td>708</td>
+      <td>7</td>
+      <td>8</td>
+      <td>Together Again</td>
+      <td>https://www.starwars.com/series/clone-wars/tog...</td>
+      <td>"You can change who you are, but you cannot ru...</td>
+      <td>Captured by the Pykes once more, Ahsoka and th...</td>
+    </tr>
+    <tr>
+      <th>125</th>
+      <td>701</td>
+      <td>7</td>
+      <td>1</td>
+      <td>The Bad Batch</td>
+      <td>https://www.starwars.com/series/clone-wars/the...</td>
+      <td>"Embrace others for their differences, for tha...</td>
+      <td>The clones look to uncover the source of the S...</td>
+    </tr>
+    <tr>
+      <th>126</th>
+      <td>702</td>
+      <td>7</td>
+      <td>2</td>
+      <td>A Distant Echo</td>
+      <td>https://www.starwars.com/series/clone-wars/a-d...</td>
+      <td>"The search for truth begins with belief."</td>
+      <td>Rex, Anakin, and the Bad Batch look to uncover...</td>
+    </tr>
+    <tr>
+      <th>127</th>
+      <td>703</td>
+      <td>7</td>
+      <td>3</td>
+      <td>On the Wings of Keeradaks</td>
+      <td>https://www.starwars.com/series/clone-wars/on-...</td>
+      <td>"Survival is one step on the path to living."</td>
+      <td>Rex has found his friend, Echo, in the clutche...</td>
+    </tr>
+    <tr>
+      <th>128</th>
+      <td>704</td>
+      <td>7</td>
+      <td>4</td>
+      <td>Unfinished Business</td>
+      <td>https://www.starwars.com/series/clone-wars/unf...</td>
+      <td>"Trust placed in another is trust earned."</td>
+      <td>Echo hatches a plan to end the Separatist thre...</td>
+    </tr>
+    <tr>
+      <th>129</th>
+      <td>709</td>
+      <td>7</td>
+      <td>9</td>
+      <td>Old Friends Not Forgotten</td>
+      <td>https://www.starwars.com/series/clone-wars/old...</td>
+      <td></td>
+      <td>The Siege of Mandalore begins, and Ahsoka turn...</td>
+    </tr>
+    <tr>
+      <th>130</th>
+      <td>710</td>
+      <td>7</td>
+      <td>10</td>
+      <td>The Phantom Apprentice</td>
+      <td>https://www.starwars.com/series/clone-wars/the...</td>
+      <td></td>
+      <td>The battle for Mandalore continues, and Ahsoka...</td>
+    </tr>
+    <tr>
+      <th>131</th>
+      <td>711</td>
+      <td>7</td>
+      <td>11</td>
+      <td>Shattered</td>
+      <td>https://www.starwars.com/series/clone-wars/sha...</td>
+      <td></td>
+      <td>Maul is captured and the Siege of Mandalore is...</td>
+    </tr>
+    <tr>
+      <th>132</th>
+      <td>712</td>
+      <td>7</td>
+      <td>12</td>
+      <td>Victory and Death</td>
+      <td>https://www.starwars.com/series/clone-wars/vic...</td>
+      <td></td>
+      <td>In the wake of Order 66, Ahsoka and Rex must w...</td>
+    </tr>
+  </tbody>
+</table>
+<p>133 rows × 7 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ep_code</span> <span class="o">=</span> <span class="s2">&quot;201&quot;</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">season</span> <span class="o">=</span> <span class="n">ep_code</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">season</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">ep_code</span><span class="p">[</span><span class="mi">1</span><span class="p">:]))</span>
 </pre></div>
 
     </div>
@@ -14061,7 +14830,8 @@ During handling of the above exception, another exception occurred:
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>&gt; An attack by a devastating new Separatist weapon -- the powerful starship Malevolence -- leaves Jedi Master Plo Koon and his clone troopers struggling to survive until Anakin and Ahsoka can find them.
+<pre>2
+1
 </pre>
 </div>
 </div>
